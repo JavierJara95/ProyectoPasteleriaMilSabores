@@ -1,124 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Productos - Pastelería Mil Sabores">
     <title>Productos | Pastelería Mil Sabores</title>
-
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
-
 <body>
+        <header class="site-header">
+            <a href="../index.html" class="logo">
+                <img src="../assets/img/logo-pasteleria.png" alt="Pastelería Mil Sabores">
+            </a>
 
-    <!-- encabezado y navegación -->
-    <header class="site-header">
+            <nav class="site-nav" aria-label="Navegación principal">
+                <a href="../index.html">Inicio</a>
+                <a href="Productos.html">Productos</a>
+                <a href="Carrito.html">Carrito <span id="contador-carrito">(0)</span></a>
+                <a href="RegistroUsuario.html">Registrarse</a>
+                <a href="IniciarSesion.html">Iniciar sesión</a>
+                <a href="blogs.html">Blog</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="nosotros.html">Nosotros</a>
+                <span id="usuario-nav" aria-live="polite"></span>
+            </nav>
+        </header>
 
-        <a href="../index.html" class="logo">
-            <img
-                src="../assets/img/logo-pasteleria.png"
-                alt="Pastelería Mil Sabores"
-            >
-        </a>
-
-        <nav>
-            <a href="../index.html">Inicio</a>
-            <a href="Productos.html">Productos</a>
-            <a href="Carrito.html">Carrito</a>
-            <a href="RegistroUsuario.html">Registrarse</a>
-            <a href="IniciarSesion.html">Iniciar sesión</a>
-            <a href="blogs.html">Blog</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="nosotros.html">Nosotros</a>
-        </nav>
-
-    </header>
-
-    <!-- contenido principal -->
     <main>
 
-        <section class="productos-container">
+        <section class="page-shell products-page">
+            <div class="section-heading section-heading-row">
+                <div>
+                    <p class="eyebrow">catálogo</p>
+                    <h1>Nuestros productos</h1>
+                    <p>Descubre nuestras tortas y productos de repostería.</p>
+                </div>
+                <a href="Carrito.html" class="btn btn-secondary">Ver carrito</a>
+            </div>
 
-            <!-- encabezado de productos -->
-            <header class="productos-header">
-
-                <h1>
-                    Nuestros productos
-                </h1>
-
-                <p>
-                    Descubre nuestras tortas y productos de repostería
-                </p>
-
-            </header>
-
-            <!-- filtros -->
-            <section class="filtros-productos">
+            <section class="filters-card" aria-label="Búsqueda y filtros de productos">
+                <div class="search-box">
+                    <label for="buscadorProducto">Buscar producto</label>
+                    <input type="search" id="buscadorProducto"
+                           placeholder="Busca por nombre o código">
+                </div>
 
                 <div class="form-group">
-
-                    <label for="filtroCategoria">
-                        Categoría
-                    </label>
-
+                    <label for="filtroCategoria">Categoría</label>
                     <select id="filtroCategoria">
-
-                        <option value="">
-                            Todas las categorías
-                        </option>
-
+                        <option value="">Todas las categorías</option>
                     </select>
-
                 </div>
 
                 <div class="form-group">
-
-                    <label for="filtroTipo">
-                        Tipo de producto
-                    </label>
-
+                    <label for="filtroTipo">Tipo de producto</label>
                     <select id="filtroTipo">
-
-                        <option value="">
-                            Todos los productos
-                        </option>
-
+                        <option value="">Todos los productos</option>
                     </select>
-
                 </div>
 
+                <div class="form-group">
+                    <label for="filtroTamano">Tamaño</label>
+                    <select id="filtroTamano">
+                        <option value="">Todos los tamaños</option>
+                    </select>
+                </div>
             </section>
 
-            <!-- listado de productos -->
-            <section
-                id="contenedorProductos"
-                class="productos-grid"
-                aria-label="Listado de productos"
-            >
+            <div class="catalog-info">
+                <p id="contadorProductos">Productos disponibles</p>
+                <p id="mensajeProductos" class="form-message" aria-live="polite"></p>
+            </div>
+
+            <section id="contenedorProductos" class="productos-grid"
+                     aria-label="Listado de productos">
                 <!-- los productos serán cargados mediante JavaScript -->
             </section>
-
-            <!-- mensaje cuando no existan productos -->
-            <p
-                id="mensajeProductos"
-                class="mensaje-productos"
-            ></p>
-
         </section>
-
     </main>
 
-    <!-- pie de página -->
-    <footer>
+        <footer class="site-footer">
+            <div class="footer-contenido">
+                <div>
+                    <h2>Pastelería Mil Sabores</h2>
+                    <p>Tradición, repostería y momentos para celebrar.</p>
+                </div>
 
-        <p>
-            &copy; 2026 Pastelería Mil Sabores.
-            Todos los derechos reservados.
-        </p>
+                <div>
+                    <h2>Enlaces</h2>
+                    <a href="../index.html">Inicio</a>
+                    <a href="Productos.html">Productos</a>
+                    <a href="Carrito.html">Carrito</a>
+                    <a href="contacto.html">Contacto</a>
+                </div>
+            </div>
 
-    </footer>
+            <p class="footer-copy">
+                &copy; 2026 Pastelería Mil Sabores. Todos los derechos reservados.
+            </p>
+        </footer>
 
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/carrito.js"></script>
+    <script src="../assets/js/validaciones.js"></script>
 </body>
-
 </html>

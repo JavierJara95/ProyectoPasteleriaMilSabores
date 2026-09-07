@@ -1,279 +1,162 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Registro de usuario - Pastelería Mil Sabores">
     <title>Registro de usuario | Pastelería Mil Sabores</title>
-
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
-
 <body>
+        <header class="site-header">
+            <a href="../index.html" class="logo">
+                <img src="../assets/img/logo-pasteleria.png" alt="Pastelería Mil Sabores">
+            </a>
 
-    <!-- encabezado y navegación -->
-    <header class="site-header">
+            <nav class="site-nav" aria-label="Navegación principal">
+                <a href="../index.html">Inicio</a>
+                <a href="Productos.html">Productos</a>
+                <a href="Carrito.html">Carrito <span id="contador-carrito">(0)</span></a>
+                <a href="RegistroUsuario.html">Registrarse</a>
+                <a href="IniciarSesion.html">Iniciar sesión</a>
+                <a href="blogs.html">Blog</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="nosotros.html">Nosotros</a>
+                <span id="usuario-nav" aria-live="polite"></span>
+            </nav>
+        </header>
 
-        <a href="../index.html" class="logo">
-            <img
-                src="../assets/img/logo-pasteleria.png"
-                alt="Pastelería Mil Sabores"
-            >
-        </a>
-
-        <nav>
-            <a href="../index.html">Inicio</a>
-            <a href="Productos.html">Productos</a>
-            <a href="Carrito.html">Carrito</a>
-            <a href="RegistroUsuario.html">Registrarse</a>
-            <a href="IniciarSesion.html">Iniciar sesión</a>
-            <a href="blogs.html">Blog</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="nosotros.html">Nosotros</a>
-        </nav>
-
-    </header>
-
-
-    <!-- contenido principal -->
     <main>
 
-        <section class="registro-container">
+        <section class="page-shell auth-page">
+            <div class="section-heading">
+                <p class="eyebrow">crear cuenta</p>
+                <h1>Regístrate en Mil Sabores</h1>
+                <p>Completa tus datos para acceder a los beneficios de la tienda.</p>
+            </div>
 
-            <article class="registro-card">
+            <article class="form-card form-card-wide">
+                <form id="formRegistro" novalidate>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="run">RUN</label>
+                            <input type="text" id="run" name="run"
+                                   placeholder="Ej: 19011022K"
+                                   minlength="7" maxlength="9"
+                                   autocomplete="off" required>
+                            <small id="errorRun" class="form-error" aria-live="polite"></small>
+                        </div>
 
-                <!-- encabezado del formulario -->
-                <header>
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre"
+                                   placeholder="Ingresa tu nombre"
+                                   maxlength="50" autocomplete="given-name" required>
+                            <small id="errorNombre" class="form-error" aria-live="polite"></small>
+                        </div>
 
-                    <h1>Crear una cuenta</h1>
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" id="apellidos" name="apellidos"
+                                   placeholder="Ingresa tus apellidos"
+                                   maxlength="100" autocomplete="family-name" required>
+                            <small id="errorApellidos" class="form-error" aria-live="polite"></small>
+                        </div>
 
-                    <p>
-                        Regístrate en Pastelería Mil Sabores
-                    </p>
+                        <div class="form-group">
+                            <label for="correoRegistro">Correo electrónico</label>
+                            <input type="email" id="correoRegistro" name="correoRegistro"
+                                   placeholder="ejemplo@gmail.com"
+                                   maxlength="100" autocomplete="email" required>
+                            <small id="errorCorreoRegistro" class="form-error" aria-live="polite"></small>
+                        </div>
 
-                </header>
+                        <div class="form-group">
+                            <label for="fechaNacimiento">Fecha de nacimiento</label>
+                            <input type="date" id="fechaNacimiento" name="fechaNacimiento"
+                                   autocomplete="bday">
+                            <small id="errorFechaNacimiento" class="form-error" aria-live="polite"></small>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="codigoPromocional">Código promocional</label>
+                            <input type="text" id="codigoPromocional" name="codigoPromocional"
+                                   placeholder="Código promocional"
+                                   maxlength="50" autocomplete="off">
+                            <small id="errorCodigoPromocional" class="form-error" aria-live="polite"></small>
+                        </div>
 
-                <!-- formulario de registro -->
-                <form id="formRegistro">
+                        <div class="form-group">
+                            <label for="region">Región</label>
+                            <select id="region" name="region" required>
+                                <option value="">Selecciona una región</option>
+                            </select>
+                            <small id="errorRegion" class="form-error" aria-live="polite"></small>
+                        </div>
 
-                    <!-- run -->
-                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="comuna">Comuna</label>
+                            <select id="comuna" name="comuna" disabled required>
+                                <option value="">Selecciona una comuna</option>
+                            </select>
+                            <small id="errorComuna" class="form-error" aria-live="polite"></small>
+                        </div>
 
-                        <label for="run">
-                            RUN
-                        </label>
-
-                        <input
-                            type="text"
-                            id="run"
-                            name="run"
-                            placeholder="Ej: 19011022K"
-                            minlength="7"
-                            maxlength="9"
-                            autocomplete="off"
-                            required
-                        >
-
-                        <small id="errorRun"></small>
-
+                        <div class="form-group form-group-full">
+                            <label for="direccion">Dirección</label>
+                            <textarea id="direccion" name="direccion"
+                                      placeholder="Ingresa tu dirección"
+                                      maxlength="300" rows="4"
+                                      autocomplete="street-address" required></textarea>
+                            <small id="errorDireccion" class="form-error" aria-live="polite"></small>
+                        </div>
                     </div>
 
+                    <aside class="benefits-box">
+                        <h2>Beneficios del caso</h2>
+                        <ul>
+                            <li>Usuarios mayores de 50 años: descuento del 50%.</li>
+                            <li>Código FELICES50: descuento del 10% de por vida.</li>
+                            <li>Estudiantes Duoc con correo institucional: beneficio de torta gratis en cumpleaños.</li>
+                        </ul>
+                    </aside>
 
-                    <!-- nombre -->
-                    <div class="form-group">
+                    <p id="mensajeRegistro" class="form-message" aria-live="polite"></p>
 
-                        <label for="nombre">
-                            Nombre
-                        </label>
-
-                        <input
-                            type="text"
-                            id="nombre"
-                            name="nombre"
-                            placeholder="Ingresa tu nombre"
-                            maxlength="50"
-                            autocomplete="given-name"
-                            required
-                        >
-
-                        <small id="errorNombre"></small>
-
-                    </div>
-
-
-                    <!-- apellidos -->
-                    <div class="form-group">
-
-                        <label for="apellidos">
-                            Apellidos
-                        </label>
-
-                        <input
-                            type="text"
-                            id="apellidos"
-                            name="apellidos"
-                            placeholder="Ingresa tus apellidos"
-                            maxlength="100"
-                            autocomplete="family-name"
-                            required
-                        >
-
-                        <small id="errorApellidos"></small>
-
-                    </div>
-
-
-                    <!-- correo -->
-                    <div class="form-group">
-
-                        <label for="correoRegistro">
-                            Correo electrónico
-                        </label>
-
-                        <input
-                            type="email"
-                            id="correoRegistro"
-                            name="correoRegistro"
-                            placeholder="ejemplo@gmail.com"
-                            maxlength="100"
-                            autocomplete="email"
-                            required
-                        >
-
-                        <small id="errorCorreoRegistro"></small>
-
-                    </div>
-
-
-                    <!-- fecha de nacimiento -->
-                    <div class="form-group">
-
-                        <label for="fechaNacimiento">
-                            Fecha de nacimiento
-                        </label>
-
-                        <input
-                            type="date"
-                            id="fechaNacimiento"
-                            name="fechaNacimiento"
-                            autocomplete="bday"
-                        >
-
-                        <small id="errorFechaNacimiento"></small>
-
-                    </div>
-
-
-                    <!-- región -->
-                    <div class="form-group">
-
-                        <label for="region">
-                            Región
-                        </label>
-
-                        <select
-                            id="region"
-                            name="region"
-                            required
-                        >
-
-                            <option value="">
-                                Selecciona una región
-                            </option>
-
-                        </select>
-
-                        <small id="errorRegion"></small>
-
-                    </div>
-
-
-                    <!-- comuna -->
-                    <div class="form-group">
-
-                        <label for="comuna">
-                            Comuna
-                        </label>
-
-                        <select
-                            id="comuna"
-                            name="comuna"
-                            disabled
-                            required
-                        >
-
-                            <option value="">
-                                Selecciona una comuna
-                            </option>
-
-                        </select>
-
-                        <small id="errorComuna"></small>
-
-                    </div>
-
-
-                    <!-- dirección -->
-                    <div class="form-group">
-
-                        <label for="direccion">
-                            Dirección
-                        </label>
-
-                        <textarea
-                            id="direccion"
-                            name="direccion"
-                            placeholder="Ingresa tu dirección"
-                            maxlength="300"
-                            rows="4"
-                            autocomplete="street-address"
-                            required
-                        ></textarea>
-
-                        <small id="errorDireccion"></small>
-
-                    </div>
-
-
-                    <!-- mensaje general -->
-                    <p id="mensajeRegistro"></p>
-
-
-                    <!-- botón -->
-                    <button type="submit">
-                        Crear cuenta
-                    </button>
-
+                    <button type="submit" class="btn btn-primary">Crear cuenta</button>
                 </form>
 
-
-                <!-- enlace al inicio de sesión -->
-                <p>
-                    ¿Ya tienes una cuenta?
-                    <a href="IniciarSesion.html">
-                        Inicia sesión aquí
-                    </a>
-                </p>
-
+                <div class="form-footer-link">
+                    <p>¿Ya tienes una cuenta?</p>
+                    <a href="IniciarSesion.html">Iniciar sesión</a>
+                </div>
             </article>
-
         </section>
-
     </main>
 
+        <footer class="site-footer">
+            <div class="footer-contenido">
+                <div>
+                    <h2>Pastelería Mil Sabores</h2>
+                    <p>Tradición, repostería y momentos para celebrar.</p>
+                </div>
 
-    <!-- pie de página -->
-    <footer>
+                <div>
+                    <h2>Enlaces</h2>
+                    <a href="../index.html">Inicio</a>
+                    <a href="Productos.html">Productos</a>
+                    <a href="Carrito.html">Carrito</a>
+                    <a href="contacto.html">Contacto</a>
+                </div>
+            </div>
 
-        <p>
-            &copy; 2026 Pastelería Mil Sabores.
-            Todos los derechos reservados.
-        </p>
+            <p class="footer-copy">
+                &copy; 2026 Pastelería Mil Sabores. Todos los derechos reservados.
+            </p>
+        </footer>
 
-    </footer>
-
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/carrito.js"></script>
+    <script src="../assets/js/validaciones.js"></script>
 </body>
-
 </html>

@@ -1,145 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Iniciar sesión - Pastelería Mil Sabores">
     <title>Iniciar sesión | Pastelería Mil Sabores</title>
-
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
-
 <body>
+        <header class="site-header">
+            <a href="../index.html" class="logo">
+                <img src="../assets/img/logo-pasteleria.png" alt="Pastelería Mil Sabores">
+            </a>
 
-    <!-- encabezado y navegación -->
-    <header class="site-header">
+            <nav class="site-nav" aria-label="Navegación principal">
+                <a href="../index.html">Inicio</a>
+                <a href="Productos.html">Productos</a>
+                <a href="Carrito.html">Carrito <span id="contador-carrito">(0)</span></a>
+                <a href="RegistroUsuario.html">Registrarse</a>
+                <a href="IniciarSesion.html">Iniciar sesión</a>
+                <a href="blogs.html">Blog</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="nosotros.html">Nosotros</a>
+                <span id="usuario-nav" aria-live="polite"></span>
+            </nav>
+        </header>
 
-        <a href="../index.html" class="logo">
-            <img
-                src="../assets/img/logo-pasteleria.png"
-                alt="Pastelería Mil Sabores"
-            >
-        </a>
-
-        <nav>
-            <a href="../index.html">Inicio</a>
-            <a href="Productos.html">Productos</a>
-            <a href="Carrito.html">Carrito</a>
-            <a href="RegistroUsuario.html">Registrarse</a>
-            <a href="IniciarSesion.html">Iniciar sesión</a>
-            <a href="blogs.html">Blog</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="nosotros.html">Nosotros</a>
-        </nav>
-
-    </header>
-
-
-    <!-- contenido principal -->
     <main>
 
-        <section class="login-container">
+        <section class="page-shell auth-page">
+            <div class="section-heading">
+                <p class="eyebrow">mi cuenta</p>
+                <h1>Iniciar sesión</h1>
+                <p>Ingresa a tu cuenta para continuar con tu compra.</p>
+            </div>
 
-            <article class="login-card">
-
-                <!-- encabezado del formulario -->
-                <header>
-
-                    <h1>Iniciar sesión</h1>
-
-                    <p>
-                        Ingresa a tu cuenta de Pastelería Mil Sabores
-                    </p>
-
-                </header>
-
-
-                <!-- formulario de inicio de sesión -->
-                <form id="formLogin">
-
-                    <!-- campo de correo -->
+            <article class="form-card">
+                <form id="formLogin" novalidate>
                     <div class="form-group">
-
-                        <label for="correo">
-                            Correo electrónico
-                        </label>
-
-                        <input
-                            type="email"
-                            id="correo"
-                            name="correo"
-                            placeholder="ejemplo@gmail.com"
-                            autocomplete="email"
-                            maxlength="100"
-                            required
-                        >
-
-                        <small id="errorCorreo"></small>
-
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo"
+                               placeholder="ejemplo@gmail.com"
+                               autocomplete="email" maxlength="100" required>
+                        <small id="errorCorreo" class="form-error" aria-live="polite"></small>
                     </div>
 
-
-                    <!-- campo de contraseña -->
                     <div class="form-group">
-
-                        <label for="contrasena">
-                            Contraseña
-                        </label>
-
-                        <input
-                            type="password"
-                            id="contrasena"
-                            name="contrasena"
-                            placeholder="Ingresa tu contraseña"
-                            autocomplete="current-password"
-                            minlength="4"
-                            maxlength="10"
-                            required
-                        >
-
-                        <small id="errorContrasena"></small>
-
+                        <label for="contrasena">Contraseña</label>
+                        <input type="password" id="contrasena" name="contrasena"
+                               placeholder="Ingresa tu contraseña"
+                               autocomplete="current-password"
+                               minlength="4" maxlength="100" required>
+                        <small id="errorContrasena" class="form-error" aria-live="polite"></small>
                     </div>
 
+                    <p id="mensajeLogin" class="form-message" aria-live="polite"></p>
 
-                    <!-- mensaje general del formulario -->
-                    <p id="mensajeLogin"></p>
-
-
-                    <!-- botón para iniciar sesión -->
-                    <button type="submit">
-                        Iniciar sesión
-                    </button>
-
+                    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                 </form>
 
-
-                <!-- enlace al registro -->
-                <p>
-                    ¿No tienes una cuenta?
-                    <a href="RegistroUsuario.html">
-                        Regístrate aquí
-                    </a>
-                </p>
-
+                <div class="form-footer-link">
+                    <p>¿No tienes una cuenta?</p>
+                    <a href="RegistroUsuario.html">Crear una cuenta</a>
+                </div>
             </article>
-
         </section>
-
     </main>
 
+        <footer class="site-footer">
+            <div class="footer-contenido">
+                <div>
+                    <h2>Pastelería Mil Sabores</h2>
+                    <p>Tradición, repostería y momentos para celebrar.</p>
+                </div>
 
-    <!-- pie de página -->
-    <footer>
+                <div>
+                    <h2>Enlaces</h2>
+                    <a href="../index.html">Inicio</a>
+                    <a href="Productos.html">Productos</a>
+                    <a href="Carrito.html">Carrito</a>
+                    <a href="contacto.html">Contacto</a>
+                </div>
+            </div>
 
-        <p>
-            &copy; 2026 Pastelería Mil Sabores.
-            Todos los derechos reservados.
-        </p>
+            <p class="footer-copy">
+                &copy; 2026 Pastelería Mil Sabores. Todos los derechos reservados.
+            </p>
+        </footer>
 
-    </footer>
-
+    <script src="../assets/js/validaciones.js"></script>
+    <script src="../assets/js/carrito.js"></script>
 </body>
-
 </html>
