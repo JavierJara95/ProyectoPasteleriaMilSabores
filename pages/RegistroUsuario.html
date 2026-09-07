@@ -13,7 +13,15 @@
 <body>
 
     <!-- encabezado y navegación -->
-    <header>
+    <header class="site-header">
+
+        <a href="../index.html" class="logo">
+            <img
+                src="../assets/img/logo-pasteleria.png"
+                alt="Pastelería Mil Sabores"
+            >
+        </a>
+
         <nav>
             <a href="../index.html">Inicio</a>
             <a href="Productos.html">Productos</a>
@@ -24,7 +32,9 @@
             <a href="contacto.html">Contacto</a>
             <a href="nosotros.html">Nosotros</a>
         </nav>
+
     </header>
+
 
     <!-- contenido principal -->
     <main>
@@ -35,12 +45,15 @@
 
                 <!-- encabezado del formulario -->
                 <header>
+
                     <h1>Crear una cuenta</h1>
 
                     <p>
                         Regístrate en Pastelería Mil Sabores
                     </p>
+
                 </header>
+
 
                 <!-- formulario de registro -->
                 <form id="formRegistro">
@@ -57,13 +70,16 @@
                             id="run"
                             name="run"
                             placeholder="Ej: 19011022K"
+                            minlength="7"
                             maxlength="9"
                             autocomplete="off"
+                            required
                         >
 
                         <small id="errorRun"></small>
 
                     </div>
+
 
                     <!-- nombre -->
                     <div class="form-group">
@@ -79,11 +95,13 @@
                             placeholder="Ingresa tu nombre"
                             maxlength="50"
                             autocomplete="given-name"
+                            required
                         >
 
                         <small id="errorNombre"></small>
 
                     </div>
+
 
                     <!-- apellidos -->
                     <div class="form-group">
@@ -99,11 +117,13 @@
                             placeholder="Ingresa tus apellidos"
                             maxlength="100"
                             autocomplete="family-name"
+                            required
                         >
 
                         <small id="errorApellidos"></small>
 
                     </div>
+
 
                     <!-- correo -->
                     <div class="form-group">
@@ -119,11 +139,13 @@
                             placeholder="ejemplo@gmail.com"
                             maxlength="100"
                             autocomplete="email"
+                            required
                         >
 
                         <small id="errorCorreoRegistro"></small>
 
                     </div>
+
 
                     <!-- fecha de nacimiento -->
                     <div class="form-group">
@@ -143,6 +165,7 @@
 
                     </div>
 
+
                     <!-- región -->
                     <div class="form-group">
 
@@ -153,6 +176,7 @@
                         <select
                             id="region"
                             name="region"
+                            required
                         >
 
                             <option value="">
@@ -165,6 +189,7 @@
 
                     </div>
 
+
                     <!-- comuna -->
                     <div class="form-group">
 
@@ -176,6 +201,7 @@
                             id="comuna"
                             name="comuna"
                             disabled
+                            required
                         >
 
                             <option value="">
@@ -187,6 +213,7 @@
                         <small id="errorComuna"></small>
 
                     </div>
+
 
                     <!-- dirección -->
                     <div class="form-group">
@@ -202,14 +229,17 @@
                             maxlength="300"
                             rows="4"
                             autocomplete="street-address"
+                            required
                         ></textarea>
 
                         <small id="errorDireccion"></small>
 
                     </div>
 
+
                     <!-- mensaje general -->
                     <p id="mensajeRegistro"></p>
+
 
                     <!-- botón -->
                     <button type="submit">
@@ -217,6 +247,7 @@
                     </button>
 
                 </form>
+
 
                 <!-- enlace al inicio de sesión -->
                 <p>
@@ -231,6 +262,7 @@
         </section>
 
     </main>
+
 
     <!-- pie de página -->
     <footer>

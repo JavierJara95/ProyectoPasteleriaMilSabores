@@ -13,7 +13,15 @@
 <body>
 
     <!-- encabezado y navegación -->
-    <header>
+    <header class="site-header">
+
+        <a href="../index.html" class="logo">
+            <img
+                src="../assets/img/logo-pasteleria.png"
+                alt="Pastelería Mil Sabores"
+            >
+        </a>
+
         <nav>
             <a href="../index.html">Inicio</a>
             <a href="Productos.html">Productos</a>
@@ -24,7 +32,9 @@
             <a href="contacto.html">Contacto</a>
             <a href="nosotros.html">Nosotros</a>
         </nav>
+
     </header>
+
 
     <!-- contenido principal -->
     <main>
@@ -35,12 +45,15 @@
 
                 <!-- encabezado del formulario -->
                 <header>
+
                     <h1>Iniciar sesión</h1>
 
                     <p>
                         Ingresa a tu cuenta de Pastelería Mil Sabores
                     </p>
+
                 </header>
+
 
                 <!-- formulario de inicio de sesión -->
                 <form id="formLogin">
@@ -59,11 +72,13 @@
                             placeholder="ejemplo@gmail.com"
                             autocomplete="email"
                             maxlength="100"
+                            required
                         >
 
                         <small id="errorCorreo"></small>
 
                     </div>
+
 
                     <!-- campo de contraseña -->
                     <div class="form-group">
@@ -80,14 +95,17 @@
                             autocomplete="current-password"
                             minlength="4"
                             maxlength="10"
+                            required
                         >
 
                         <small id="errorContrasena"></small>
 
                     </div>
 
+
                     <!-- mensaje general del formulario -->
                     <p id="mensajeLogin"></p>
+
 
                     <!-- botón para iniciar sesión -->
                     <button type="submit">
@@ -95,6 +113,7 @@
                     </button>
 
                 </form>
+
 
                 <!-- enlace al registro -->
                 <p>
@@ -109,6 +128,7 @@
         </section>
 
     </main>
+
 
     <!-- pie de página -->
     <footer>

@@ -13,7 +13,15 @@
 <body>
 
     <!-- encabezado y navegación -->
-    <header>
+    <header class="site-header">
+
+        <a href="../index.html" class="logo">
+            <img
+                src="../assets/img/logo-pasteleria.png"
+                alt="Pastelería Mil Sabores"
+            >
+        </a>
+
         <nav>
             <a href="../index.html">Inicio</a>
             <a href="Productos.html">Productos</a>
@@ -24,6 +32,7 @@
             <a href="contacto.html">Contacto</a>
             <a href="nosotros.html">Nosotros</a>
         </nav>
+
     </header>
 
     <!-- contenido principal -->
@@ -37,7 +46,7 @@
                 class="detalle-producto"
             >
 
-                <!-- imagen -->
+                <!-- imagen del producto -->
                 <div class="detalle-imagen">
 
                     <img
@@ -48,7 +57,7 @@
 
                 </div>
 
-                <!-- información -->
+                <!-- información del producto -->
                 <div class="detalle-info">
 
                     <p
@@ -115,7 +124,7 @@
 
                     </div>
 
-                    <!-- botón carrito -->
+                    <!-- botón para agregar al carrito -->
                     <button
                         type="button"
                         id="btnAgregarCarrito"
@@ -123,6 +132,7 @@
                         Añadir al carrito
                     </button>
 
+                    <!-- volver al catálogo -->
                     <a
                         href="Productos.html"
                         class="volver-productos"
