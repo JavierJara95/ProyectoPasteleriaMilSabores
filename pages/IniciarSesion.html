@@ -1,11 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Iniciar sesión | Pastelería Mil Sabores</title>
+
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
+
 <body>
-    
+
+    <!-- encabezado y navegación -->
+    <header>
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="Productos.html">Productos</a>
+            <a href="Carrito.html">Carrito</a>
+            <a href="RegistroUsuario.html">Registrarse</a>
+            <a href="IniciarSesion.html">Iniciar sesión</a>
+            <a href="blogs.html">Blog</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="nosotros.html">Nosotros</a>
+        </nav>
+    </header>
+
+    <!-- contenido principal -->
+    <main>
+
+        <section class="login-container">
+
+            <article class="login-card">
+
+                <!-- encabezado del formulario -->
+                <header>
+                    <h1>Iniciar sesión</h1>
+
+                    <p>
+                        Ingresa a tu cuenta de Pastelería Mil Sabores
+                    </p>
+                </header>
+
+                <!-- formulario de inicio de sesión -->
+                <form id="formLogin">
+
+                    <!-- campo de correo -->
+                    <div class="form-group">
+
+                        <label for="correo">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            id="correo"
+                            name="correo"
+                            placeholder="ejemplo@gmail.com"
+                            autocomplete="email"
+                            maxlength="100"
+                        >
+
+                        <small id="errorCorreo"></small>
+
+                    </div>
+
+                    <!-- campo de contraseña -->
+                    <div class="form-group">
+
+                        <label for="contrasena">
+                            Contraseña
+                        </label>
+
+                        <input
+                            type="password"
+                            id="contrasena"
+                            name="contrasena"
+                            placeholder="Ingresa tu contraseña"
+                            autocomplete="current-password"
+                            minlength="4"
+                            maxlength="10"
+                        >
+
+                        <small id="errorContrasena"></small>
+
+                    </div>
+
+                    <!-- mensaje general del formulario -->
+                    <p id="mensajeLogin"></p>
+
+                    <!-- botón para iniciar sesión -->
+                    <button type="submit">
+                        Iniciar sesión
+                    </button>
+
+                </form>
+
+                <!-- enlace al registro -->
+                <p>
+                    ¿No tienes una cuenta?
+                    <a href="RegistroUsuario.html">
+                        Regístrate aquí
+                    </a>
+                </p>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- pie de página -->
+    <footer>
+
+        <p>
+            &copy; 2026 Pastelería Mil Sabores.
+            Todos los derechos reservados.
+        </p>
+
+    </footer>
+
 </body>
+
 </html>

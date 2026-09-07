@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Carrito de compras | Pastelería Mil Sabores</title>
+
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+
+    <!-- encabezado y navegación -->
+    <header>
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="Productos.html">Productos</a>
+            <a href="Carrito.html">Carrito</a>
+            <a href="RegistroUsuario.html">Registrarse</a>
+            <a href="IniciarSesion.html">Iniciar sesión</a>
+            <a href="blogs.html">Blog</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="nosotros.html">Nosotros</a>
+        </nav>
+    </header>
+
+    <!-- contenido principal -->
+    <main>
+
+        <section class="carrito-container">
+
+            <!-- encabezado del carrito -->
+            <header class="carrito-header">
+
+                <h1>Mi carrito</h1>
+
+                <p>
+                    Revisa los productos que deseas comprar
+                </p>
+
+            </header>
+
+            <!-- contenido del carrito -->
+            <section class="carrito-contenido">
+
+                <!-- listado de productos -->
+                <section
+                    id="contenedorCarrito"
+                    class="carrito-lista"
+                    aria-label="Productos agregados al carrito"
+                >
+
+                    <!-- los productos serán cargados mediante JavaScript -->
+
+                </section>
+
+                <!-- mensaje de carrito vacío -->
+                <p
+                    id="mensajeCarrito"
+                    class="mensaje-carrito"
+                >
+                    Tu carrito está vacío.
+                </p>
+
+                <!-- resumen -->
+                <aside class="carrito-resumen">
+
+                    <h2>Resumen de compra</h2>
+
+                    <div class="resumen-linea">
+                        <span>Subtotal</span>
+
+                        <span id="subtotalCarrito">
+                            $0
+                        </span>
+                    </div>
+
+                    <div class="resumen-linea">
+                        <span>Descuento</span>
+
+                        <span id="descuentoCarrito">
+                            $0
+                        </span>
+                    </div>
+
+                    <div class="resumen-total">
+                        <span>Total</span>
+
+                        <span id="totalCarrito">
+                            $0
+                        </span>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="btnContinuarCompra"
+                    >
+                        Continuar compra
+                    </button>
+
+                    <a
+                        href="Productos.html"
+                        class="volver-productos"
+                    >
+                        Seguir comprando
+                    </a>
+
+                </aside>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- pie de página -->
+    <footer>
+
+        <p>
+            &copy; 2026 Pastelería Mil Sabores.
+            Todos los derechos reservados.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
