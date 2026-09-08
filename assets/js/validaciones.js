@@ -20,6 +20,38 @@ function correoPermitido(correo) {
     );
 }
 
+
+function runValido(run) {
+    const valor = run.trim().toUpperCase();
+
+    if (!/^\d{7,8}[0-9K]$/.test(valor)) {
+        return false;
+    }
+
+    const cuerpo = valor.slice(0, -1);
+    const digitoIngresado = valor.slice(-1);
+    let suma = 0;
+    let multiplicador = 2;
+
+    for (let i = cuerpo.length - 1; i >= 0; i--) {
+        suma += Number(cuerpo[i]) * multiplicador;
+        multiplicador = multiplicador === 7 ? 2 : multiplicador + 1;
+    }
+
+    const resto = 11 - (suma % 11);
+    let digitoEsperado;
+
+    if (resto === 11) {
+        digitoEsperado = "0";
+    } else if (resto === 10) {
+        digitoEsperado = "K";
+    } else {
+        digitoEsperado = String(resto);
+    }
+
+    return digitoIngresado === digitoEsperado;
+}
+
 function validarLogin() {
     const correo = document.getElementById("correo");
     const contrasena = document.getElementById("contrasena");
@@ -154,10 +186,10 @@ function validarRegistro() {
     const valorComuna = comuna.value;
     const valorDireccion = direccion.value.trim();
 
-    if (!/^\d{7,8}[0-9K]$/.test(valorRun)) {
+    if (!runValido(valorRun)) {
         mostrarError(
             "errorRun",
-            "El RUN debe tener entre 7 y 9 caracteres, solo números y K al final."
+            "Ingresa un RUN válido de 7 a 9 caracteres, sin puntos ni guion."
         );
         correcto = false;
     }
@@ -194,6 +226,14 @@ function validarRegistro() {
         mostrarError(
             "errorCorreoRegistro",
             "Usa un correo @duoc.cl, @profesor.duoc.cl o @gmail.com."
+        );
+        correcto = false;
+    }
+
+    if (valorCodigo && valorCodigo !== "FELICES50") {
+        mostrarError(
+            "errorCodigoPromocional",
+            "El código promocional ingresado no es válido. Usa FELICES50."
         );
         correcto = false;
     }

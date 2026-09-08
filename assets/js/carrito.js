@@ -277,6 +277,144 @@ function cargarCarrito() {
     actualizarContadorCarrito();
 }
 
+function obtenerUsuarioActual() {
+    const correoActual = localStorage.getItem("usuario");
+
+    if (!correoActual) {
+        return null;
+    }
+
+    const usuarios = JSON.parse(
+        localStorage.getItem("usuariosMilSabores")
+    ) || [];
+
+    return usuarios.find(
+        usuario => usuario.correo === correoActual
+    ) || null;
+}
+
+function calcularEdad(fechaNacimiento) {
+    if (!fechaNacimiento) {
+        return null;
+    }
+
+    const nacimiento = new Date(`${fechaNacimiento}T00:00:00`);
+    const hoy = new Date();
+
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    const diferenciaMes = hoy.getMonth() - nacimiento.getMonth();
+
+    if (
+        diferenciaMes < 0 ||
+        (diferenciaMes === 0 && hoy.getDate() < nacimiento.getDate())
+    ) {
+        edad--;
+    }
+
+    return edad;
+}
+
+function esCumpleanos(fechaNacimiento) {
+    if (!fechaNacimiento) {
+        return false;
+    }
+
+    const nacimiento = new Date(`${fechaNacimiento}T00:00:00`);
+    const hoy = new Date();
+
+    return (
+        nacimiento.getMonth() === hoy.getMonth() &&
+        nacimiento.getDate() === hoy.getDate()
+    );
+}
+
+function esCorreoDuoc(correo) {
+    if (!correo) {
+        return false;
+    }
+
+    const correoNormalizado = correo.toLowerCase().trim();
+
+    return (
+        correoNormalizado.endsWith("@duoc.cl") ||
+        correoNormalizado.endsWith("@profesor.duoc.cl")
+    );
+}
+
+function calcularDescuentoCarrito(carrito) {
+    const usuario = obtenerUsuarioActual();
+
+    if (!usuario || carrito.length === 0) {
+        return {
+            descuento: 0,
+            beneficios: []
+        };
+    }
+
+    const subtotal = carrito.reduce((suma, item) => {
+        const producto = obtenerDatosProducto(item.codigo);
+        const precio = producto
+            ? producto.precio
+            : Number(item.precio || 0);
+
+        return suma + precio * Number(item.cantidad || 0);
+    }, 0);
+
+    let descuento = 0;
+    const beneficios = [];
+
+    const edad = calcularEdad(usuario.fechaNacimiento);
+
+    if (edad !== null && edad > 50) {
+        descuento += subtotal * 0.50;
+        beneficios.push("50% por ser mayor de 50 años");
+    }
+
+    if (usuario.codigoPromocional === "FELICES50") {
+        descuento += subtotal * 0.10;
+        beneficios.push("10% por código FELICES50");
+    }
+
+    if (
+        esCorreoDuoc(usuario.correo) &&
+        esCumpleanos(usuario.fechaNacimiento)
+    ) {
+        const tortas = carrito.filter(item => {
+            const producto = obtenerDatosProducto(item.codigo);
+            return producto && producto.tipo === "Torta";
+        });
+
+        if (tortas.length > 0) {
+            const tortaGratis = tortas.reduce((menor, item) => {
+                const producto = obtenerDatosProducto(item.codigo);
+                const precioActual = producto
+                    ? producto.precio
+                    : Number(item.precio || 0);
+
+                const precioMenor = menor
+                    ? Number(menor.precio || 0)
+                    : Infinity;
+
+                return precioActual < precioMenor
+                    ? { ...item, precio: precioActual }
+                    : menor;
+            }, null);
+
+            if (tortaGratis) {
+                descuento += Number(tortaGratis.precio || 0);
+                beneficios.push("torta gratis por cumpleaños Duoc");
+            }
+        }
+    }
+
+    descuento = Math.min(descuento, subtotal);
+
+    return {
+        descuento,
+        beneficios
+    };
+}
+
 function actualizarResumenCarrito(carrito) {
     const subtotalElemento = document.getElementById("subtotalCarrito");
     const descuentoElemento = document.getElementById("descuentoCarrito");
@@ -293,8 +431,9 @@ function actualizarResumenCarrito(carrito) {
         subtotal += precio * Number(item.cantidad || 0);
     });
 
-    const descuento = 0;
-    const total = subtotal - descuento;
+    const resultadoDescuento = calcularDescuentoCarrito(carrito);
+    const descuento = resultadoDescuento.descuento;
+    const total = Math.max(0, subtotal - descuento);
 
     if (subtotalElemento) {
         subtotalElemento.textContent =
