@@ -1,269 +1,190 @@
-/* datos de productos */
-
-const productos = [
-    {
-        id: 1,
-        codigo: "TC001",
-        categoria: "Tortas Cuadradas",
-        nombre: "Torta Cuadrada de Chocolate",
-        precio: 45000,
-        descripcion: "Deliciosa torta de chocolate con capas de ganache y un toque de avellanas. Personalizable con mensajes especiales."
-    },
-    {
-        id: 2,
-        codigo: "TC002",
-        categoria: "Tortas Cuadradas",
-        nombre: "Torta Cuadrada de Frutas",
-        precio: 50000,
-        descripcion: "Una mezcla de frutas frescas y crema chantilly sobre un suave bizcocho de vainilla, ideal para celebraciones."
-    },
-    {
-        id: 3,
-        codigo: "TT001",
-        categoria: "Tortas Circulares",
-        nombre: "Torta Circular de Vainilla",
-        precio: 40000,
-        descripcion: "Bizcocho de vainilla clásico relleno con crema pastelera y cubierto con un glaseado dulce, perfecto para cualquier ocasión."
-    },
-    {
-        id: 4,
-        codigo: "TT002",
-        categoria: "Tortas Circulares",
-        nombre: "Torta Circular de Manjar",
-        precio: 42000,
-        descripcion: "Torta tradicional chilena con manjar y nueces, un deleite para los amantes de los sabores dulces y clásicos."
-    },
-    {
-        id: 5,
-        codigo: "PI001",
-        categoria: "Postres Individuales",
-        nombre: "Mousse de Chocolate",
-        precio: 5000,
-        descripcion: "Postre individual cremoso y suave, hecho con chocolate de alta calidad, ideal para los amantes del chocolate."
-    },
-    {
-        id: 6,
-        codigo: "PI002",
-        categoria: "Postres Individuales",
-        nombre: "Tiramisú Clásico",
-        precio: 5500,
-        descripcion: "Un postre italiano individual con capas de café, mascarpone y cacao, perfecto para finalizar cualquier comida."
-    },
-    {
-        id: 7,
-        codigo: "PSA001",
-        categoria: "Productos Sin Azúcar",
-        nombre: "Torta Sin Azúcar de Naranja",
-        precio: 48000,
-        descripcion: "Torta ligera y deliciosa, endulzada naturalmente, ideal para quienes buscan opciones más saludables."
-    },
-    {
-        id: 8,
-        codigo: "PSA002",
-        categoria: "Productos Sin Azúcar",
-        nombre: "Cheesecake Sin Azúcar",
-        precio: 47000,
-        descripcion: "Suave y cremoso, este cheesecake es una opción perfecta para disfrutar sin culpa."
-    },
-    {
-        id: 9,
-        codigo: "PT001",
-        categoria: "Pastelería Tradicional",
-        nombre: "Empanada de Manzana",
-        precio: 3000,
-        descripcion: "Pastelería tradicional rellena de manzanas especiadas, perfecta para un dulce desayuno o merienda."
-    },
-    {
-        id: 10,
-        codigo: "PT002",
-        categoria: "Pastelería Tradicional",
-        nombre: "Tarta de Santiago",
-        precio: 6000,
-        descripcion: "Tradicional tarta española hecha con almendras, azúcar, y huevos, una delicia para los amantes de los postres clásicos."
-    },
-    {
-        id: 11,
-        codigo: "PG001",
-        categoria: "Productos Sin Gluten",
-        nombre: "Brownie Sin Gluten",
-        precio: 4000,
-        descripcion: "Rico y denso, este brownie es perfecto para quienes necesitan evitar el gluten sin sacrificar el sabor."
-    },
-    {
-        id: 12,
-        codigo: "PG002",
-        categoria: "Productos Sin Gluten",
-        nombre: "Pan Sin Gluten",
-        precio: 3500,
-        descripcion: "Suave y esponjoso, ideal para sándwiches o para acompañar cualquier comida."
-    },
-    {
-        id: 13,
-        codigo: "PV001",
-        categoria: "Productos Vegana",
-        nombre: "Torta Vegana de Chocolate",
-        precio: 50000,
-        descripcion: "Torta de chocolate húmeda y deliciosa, hecha sin productos de origen animal, perfecta para veganos."
-    },
-    {
-        id: 14,
-        codigo: "PV002",
-        categoria: "Productos Vegana",
-        nombre: "Galletas Veganas de Avena",
-        precio: 4500,
-        descripcion: "Crujientes y sabrosas, estas galletas son una excelente opción para un snack saludable y vegano."
-    },
-    {
-        id: 15,
-        codigo: "TE001",
-        categoria: "Tortas Especiales",
-        nombre: "Torta Especial de Cumpleaños",
-        precio: 55000,
-        descripcion: "Diseñada especialmente para celebraciones, personalizable con decoraciones y mensajes únicos."
-    },
-    {
-        id: 16,
-        codigo: "TE002",
-        categoria: "Tortas Especiales",
-        nombre: "Torta Especial de Boda",
-        precio: 60000,
-        descripcion: "Elegante y deliciosa, esta torta está diseñada para ser el centro de atención en cualquier boda."
-    }
-];
-
-
-/* categorías de productos */
-
-const categoriasDisponibles = [
-    "Tortas Cuadradas",
-    "Tortas Circulares",
-    "Postres Individuales",
-    "Productos Sin Azúcar",
-    "Pastelería Tradicional",
-    "Productos Sin Gluten",
-    "Productos Vegana",
-    "Tortas Especiales"
-];
-
-
-/* tamaños disponibles */
-
-const tamanosDisponibles = [
-    "Pequeño",
-    "Mediano",
-    "Grande"
-];
-
-
-/* tipos de torta */
-
-const tiposTorta = [
-    "Cuadrada",
-    "Circular"
-];
-
-
-/* regiones y comunas */
-
 const regionesComunas = {
-    "Arica y Parinacota": [
-        "Arica",
-        "Camarones",
-        "General Lagos",
-        "Putre"
-    ],
-    "Tarapacá": [
-        "Alto Hospicio",
-        "Iquique",
-        "Pozo Almonte",
-        "Pica"
-    ],
-    "Antofagasta": [
-        "Antofagasta",
-        "Calama",
-        "Mejillones",
-        "Taltal"
-    ],
-    "Atacama": [
-        "Copiapó",
-        "Caldera",
-        "Chañaral",
-        "Vallenar"
-    ],
-    "Coquimbo": [
-        "La Serena",
-        "Coquimbo",
-        "Ovalle",
-        "Illapel"
+    "Región Metropolitana": [
+        "Santiago",
+        "Maipú",
+        "Puente Alto",
+        "Las Condes",
+        "Ñuñoa"
     ],
     "Valparaíso": [
         "Valparaíso",
         "Viña del Mar",
         "Quilpué",
-        "Villa Alemana",
-        "San Antonio"
-    ],
-    "Metropolitana": [
-        "Santiago",
-        "Maipú",
-        "Las Condes",
-        "Providencia",
-        "Ñuñoa",
-        "La Florida",
-        "Puente Alto"
-    ],
-    "O'Higgins": [
-        "Rancagua",
-        "Machalí",
-        "San Fernando",
-        "Rengo"
-    ],
-    "Maule": [
-        "Talca",
-        "Curicó",
-        "Linares",
-        "Cauquenes"
-    ],
-    "Ñuble": [
-        "Chillán",
-        "San Carlos",
-        "Bulnes",
-        "Yungay"
+        "Villa Alemana"
     ],
     "Biobío": [
         "Concepción",
         "Talcahuano",
-        "Los Ángeles",
-        "Coronel"
+        "Chiguayante",
+        "San Pedro de la Paz"
     ],
     "La Araucanía": [
         "Temuco",
-        "Angol",
+        "Padre Las Casas",
         "Villarrica",
-        "Pucón"
-    ],
-    "Los Ríos": [
-        "Valdivia",
-        "La Unión",
-        "Panguipulli",
-        "Río Bueno"
-    ],
-    "Los Lagos": [
-        "Puerto Montt",
-        "Osorno",
-        "Castro",
-        "Ancud"
-    ],
-    "Aysén": [
-        "Coyhaique",
-        "Aysén",
-        "Chile Chico",
-        "Cochrane"
-    ],
-    "Magallanes": [
-        "Punta Arenas",
-        "Puerto Natales",
-        "Porvenir",
-        "Cabo de Hornos"
+        "Angol"
     ]
 };
+
+const productos = [
+    {
+        codigo: "TC001",
+        categoria: "Tortas Cuadradas",
+        nombre: "Torta Cuadrada de Chocolate",
+        precio: 45000,
+        tipo: "Torta",
+        tamano: "Mediana",
+        descripcion: "Torta cuadrada de chocolate, ideal para celebraciones y ocasiones especiales.",
+        imagen: "../assets/img/torta-cuadr-chocolate.jpg"
+    },
+    {
+        codigo: "TC002",
+        categoria: "Tortas Cuadradas",
+        nombre: "Torta Cuadrada de Frutas",
+        precio: 50000,
+        tipo: "Torta",
+        tamano: "Mediana",
+        descripcion: "Torta cuadrada de frutas, ideal para compartir en celebraciones.",
+        imagen: "../assets/img/torta-cuadr-frutas.jpg"
+    },
+    {
+        codigo: "TT001",
+        categoria: "Tortas Circulares",
+        nombre: "Torta Circular de Vainilla",
+        precio: 40000,
+        tipo: "Torta",
+        tamano: "Mediana",
+        descripcion: "Torta circular de vainilla con un sabor suave y delicioso.",
+        imagen: "../assets/img/torta-circu-vainilla.jpg"
+    },
+    {
+        codigo: "TT002",
+        categoria: "Tortas Circulares",
+        nombre: "Torta Circular de Manjar",
+        precio: 42000,
+        tipo: "Torta",
+        tamano: "Mediana",
+        descripcion: "Torta circular de manjar, perfecta para disfrutar en familia.",
+        imagen: "../assets/img/torta-circu-manjar.jpg"
+    },
+    {
+        codigo: "PI001",
+        categoria: "Postres Individuales",
+        nombre: "Mousse de Chocolate",
+        precio: 5000,
+        tipo: "Postre",
+        tamano: "Individual",
+        descripcion: "Mousse individual de chocolate con una textura suave y cremosa.",
+        imagen: "../assets/img/mousse-chocolate.jpg"
+    },
+    {
+        codigo: "PI002",
+        categoria: "Postres Individuales",
+        nombre: "Tiramisu Clásico",
+        precio: 5500,
+        tipo: "Postre",
+        tamano: "Individual",
+        descripcion: "Tiramisu clásico en formato individual.",
+        imagen: "../assets/img/tiramisu.jpg"
+    },
+    {
+        codigo: "PSA001",
+        categoria: "Productos Sin Azúcar",
+        nombre: "Torta Sin Azúcar de Naranja",
+        precio: 48000,
+        tipo: "Torta",
+        tamano: "Mediana",
+        descripcion: "Torta de naranja sin azúcar, ideal para quienes buscan una alternativa diferente.",
+        imagen: "../assets/img/torta-sa-naranja.jpg"
+    },
+    {
+        codigo: "PSA002",
+        categoria: "Productos Sin Azúcar",
+        nombre: "Cheesecake Sin Azúcar",
+        precio: 47000,
+        tipo: "Torta",
+        tamano: "Mediana",
+        descripcion: "Cheesecake sin azúcar con una textura cremosa y suave.",
+        imagen: "../assets/img/cheesecake-sa.jpg"
+    },
+    {
+        codigo: "PT001",
+        categoria: "Pastelería Tradicional",
+        nombre: "Empanada de Manzana",
+        precio: 3000,
+        tipo: "Pastelería",
+        tamano: "Individual",
+        descripcion: "Empanada de manzana, una preparación tradicional y deliciosa.",
+        imagen: "../assets/img/empanada-manzana.jpg"
+    },
+    {
+        codigo: "PT002",
+        categoria: "Pastelería Tradicional",
+        nombre: "Tarta de Santiago",
+        precio: 6000,
+        tipo: "Pastelería",
+        tamano: "Individual",
+        descripcion: "Tarta de Santiago, una preparación tradicional de la pastelería.",
+        imagen: "../assets/img/tarta-santiago.jpg"
+    },
+    {
+        codigo: "PG001",
+        categoria: "Productos Sin Gluten",
+        nombre: "Brownie Sin Gluten",
+        precio: 4000,
+        tipo: "Postre",
+        tamano: "Individual",
+        descripcion: "Brownie sin gluten, ideal para disfrutar de un dulce delicioso.",
+        imagen: "../assets/img/brownie-sg.jpg"
+    },
+    {
+        codigo: "PG002",
+        categoria: "Productos Sin Gluten",
+        nombre: "Pan Sin Gluten",
+        precio: 3500,
+        tipo: "Panadería",
+        tamano: "Individual",
+        descripcion: "Pan sin gluten, preparado como una alternativa para distintos tipos de alimentación.",
+        imagen: "../assets/img/pan-sg.jpg"
+    },
+    {
+        codigo: "PV001",
+        categoria: "Productos Vegana",
+        nombre: "Torta Vegana de Chocolate",
+        precio: 50000,
+        tipo: "Torta",
+        tamano: "Mediana",
+        descripcion: "Torta vegana de chocolate, ideal para celebraciones y ocasiones especiales.",
+        imagen: "../assets/img/torta-veg-choc.jpg"
+    },
+    {
+        codigo: "PV002",
+        categoria: "Productos Vegana",
+        nombre: "Galletas Veganas de Avena",
+        precio: 4500,
+        tipo: "Galleta",
+        tamano: "Individual",
+        descripcion: "Galletas veganas de avena, una alternativa dulce y deliciosa.",
+        imagen: "../assets/img/galletas-veg-avena.jpg"
+    },
+    {
+        codigo: "TE001",
+        categoria: "Tortas Especiales",
+        nombre: "Torta Especial de Cumpleaños",
+        precio: 55000,
+        tipo: "Torta",
+        tamano: "Grande",
+        descripcion: "Torta especial de cumpleaños pensada para celebrar momentos importantes.",
+        imagen: "../assets/img/torta-cumple.jpg"
+    },
+    {
+        codigo: "TE002",
+        categoria: "Tortas Especiales",
+        nombre: "Torta Especial de Boda",
+        precio: 60000,
+        tipo: "Torta",
+        tamano: "Grande",
+        descripcion: "Torta especial de boda diseñada para acompañar una celebración única.",
+        imagen: "../assets/img/torta-bodas.jpg"
+    }
+];

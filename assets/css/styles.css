@@ -846,7 +846,7 @@ h1 {
     display: contents;
 }
 
-.carrito-producto > img {
+.carrito-item > img {
     grid-column: 1;
     grid-row: 1 / span 2;
     width: 135px;
@@ -1233,7 +1233,7 @@ h1 {
         gap: 14px;
     }
 
-    .carrito-producto > img {
+    .carrito-item > img {
         width: 90px;
         height: 90px;
     }
