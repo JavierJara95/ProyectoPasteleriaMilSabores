@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Producto - Panel de Administración</title>
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+    <!-- Encabezado del Panel Administrador -->
+    <header class="header-principal">
+        <div class="header-contenido">
+            <a href="home.html" class="logo">
+                <img src="../assets/img/logo.png" alt="Logo Pastelería Mil Sabores">
+            </a>
+
+            <!-- Navegación Administrador -->
+            <nav class="navegacion-principal">
+                <ul class="menu-principal">
+                    <li><a href="home.html">Inicio Admin</a></li>
+                    <li class="menu-desplegable">
+                        <a href="productos.html" style="color: var(--texto);">
+                            <strong>Gestión Productos</strong> <span class="flecha-menu">▼</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="productos.html">Ver Productos</a></li>
+                            <li><a href="nuevo-producto.html">Nuevo Producto</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-desplegable">
+                        <a href="usuarios.html">
+                            Gestión Usuarios <span class="flecha-menu">▼</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="usuarios.html">Ver Usuarios</a></li>
+                            <li><a href="nuevo-usuario.html">Nuevo Usuario</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="header-acciones">
+                <span class="enlace-usuario">Hola, <strong>Admin</strong></span>
+                <a href="../index.html" class="btn btn-secondary" style="min-height: 38px; padding: 6px 14px; font-size: 14px;">
+                    Ver Tienda ↗
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal: Formulario Crear Producto -->
+    <main class="page-shell">
+        <section class="form-card form-card-wide">
+            <div class="section-heading">
+                <p class="eyebrow">Módulo Administrativo</p>
+                <h1>Crear Nuevo Producto</h1>
+                <p>Ingresa los detalles técnicos, precio y stock para registrar un producto en el catálogo.</p>
+            </div>
+
+            <form id="form-nuevo-producto" novalidate class="form-grid">
+                
+                <!-- Código del Producto -->
+                <div class="form-group">
+                    <label for="codigo">Código del Producto</label>
+                    <input 
+                        type="text" 
+                        id="codigo" 
+                        name="codigo" 
+                        minlength="3" 
+                        maxlength="15" 
+                        placeholder="Ej: TOR-001" 
+                        required>
+                    <span class="form-error" id="error-codigo"></span>
+                </div>
+
+                <!-- Nombre del Producto -->
+                <div class="form-group">
+                    <label for="nombre">Nombre del Producto</label>
+                    <input 
+                        type="text" 
+                        id="nombre" 
+                        name="nombre" 
+                        maxlength="80" 
+                        placeholder="Ej: Torta Amor Hojajras" 
+                        required>
+                    <span class="form-error" id="error-nombre"></span>
+                </div>
+
+                <!-- Categoría -->
+                <div class="form-group">
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="Tortas Cuadradas">Tortas Cuadradas</option>
+                        <option value="Tortas Circulares">Tortas Circulares</option>
+                        <option value="Sin Azúcar">Sin Azúcar</option>
+                        <option value="Tradicionales">Tradicionales</option>
+                        <option value="Productos Veganos">Productos Veganos</option>
+                        <option value="Especiales">Especiales</option>
+                    </select>
+                    <span class="form-error" id="error-categoria"></span>
+                </div>
+
+                <!-- Precio -->
+                <div class="form-group">
+                    <label for="precio">Precio ($ CLP)</label>
+                    <input 
+                        type="number" 
+                        id="precio" 
+                        name="precio" 
+                        min="1" 
+                        placeholder="Ej: 25000" 
+                        required>
+                    <span class="form-error" id="error-precio"></span>
+                </div>
+
+                <!-- Stock Actual -->
+                <div class="form-group">
+                    <label for="stock">Stock Inicial</label>
+                    <input 
+                        type="number" 
+                        id="stock" 
+                        name="stock" 
+                        min="0" 
+                        placeholder="Ej: 15" 
+                        required>
+                    <span class="form-error" id="error-stock"></span>
+                </div>
+
+                <!-- Alerta de Stock Crítico -->
+                <div class="form-group">
+                    <label for="stockCritico">Stock Crítico (Mínimo)</label>
+                    <input 
+                        type="number" 
+                        id="stockCritico" 
+                        name="stockCritico" 
+                        min="1" 
+                        placeholder="Ej: 3" 
+                        required>
+                    <span class="form-error" id="error-stockCritico"></span>
+                </div>
+
+                <!-- Ruta o Nombre de la Imagen -->
+                <div class="form-group form-group-full">
+                    <label for="imagen">Nombre o Ruta de la Imagen</label>
+                    <input 
+                        type="text" 
+                        id="imagen" 
+                        name="imagen" 
+                        placeholder="Ej: torta-amor.jpg o https://..." 
+                        required>
+                    <span class="form-error" id="error-imagen"></span>
+                </div>
+
+                <!-- Descripción -->
+                <div class="form-group form-group-full">
+                    <label for="descripcion">Descripción del Producto</label>
+                    <textarea 
+                        id="descripcion" 
+                        name="descripcion" 
+                        maxlength="300" 
+                        placeholder="Describe los ingredientes principales o detalles de la receta..." 
+                        required></textarea>
+                    <span class="form-error" id="error-descripcion"></span>
+                </div>
+
+                <!-- Mensaje de confirmación -->
+                <div class="form-group form-group-full">
+                    <div class="form-message" id="producto-mensaje"></div>
+                </div>
+
+                <!-- Botones del Formulario -->
+                <div class="form-group form-group-full" style="display: flex; gap: 15px; margin-top: 10px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Guardar Producto</button>
+                    <a href="productos.html" class="btn btn-light" style="flex: 1; text-decoration: none;">Cancelar</a>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="site-footer">
+        <div class="footer-contenido">
+            <div>
+                <h2>Pastelería Mil Sabores - Módulo Admin</h2>
+                <p>Sistema interno de administración y mantención de datos.</p>
+            </div>
+            <div>
+                <a href="../index.html">Ir a la Tienda Pública</a>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <p>&copy; 2026 Pastelería Mil Sabores. Acceso restringido.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts de Lógica y Validaciones -->
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/validaciones.js"></script>
+    <script src="../assets/js/admin.js"></script>
+</body>
+</html>
