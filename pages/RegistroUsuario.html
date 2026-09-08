@@ -8,22 +8,126 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-        <header class="site-header">
-            <a href="../index.html" class="logo">
-                <img src="../assets/img/logo-pasteleria.png" alt="Pastelería Mil Sabores">
-            </a>
+        <header class="header-principal">
+            <div class="header-contenido">
 
-            <nav class="site-nav" aria-label="Navegación principal">
-                <a href="../index.html">Inicio</a>
-                <a href="Productos.html">Productos</a>
-                <a href="Carrito.html">Carrito <span id="contador-carrito">(0)</span></a>
-                <a href="RegistroUsuario.html">Registrarse</a>
-                <a href="IniciarSesion.html">Iniciar sesión</a>
-                <a href="blogs.html">Blog</a>
-                <a href="contacto.html">Contacto</a>
-                <a href="nosotros.html">Nosotros</a>
-                <span id="usuario-nav" aria-live="polite"></span>
-            </nav>
+                <a href="../index.html" class="logo">
+                    <img src="../assets/img/logo-pasteleria.png"
+                        alt="Pastelería Mil Sabores">
+                </a>
+
+                <nav class="navegacion-principal" aria-label="Navegación principal">
+                    <ul class="menu-principal">
+
+                        <li>
+                            <a href="../index.html">Inicio</a>
+                        </li>
+
+                        <li class="menu-desplegable">
+                            <a href="Productos.html">
+                                Productos
+                                <span class="flecha-menu">▼</span>
+                            </a>
+
+                            <ul class="submenu">
+
+                                <li>
+                                    <a href="Productos.html">
+                                        Ver todos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Tortas%20Cuadradas">
+                                        Tortas Cuadradas
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Tortas%20Circulares">
+                                        Tortas Circulares
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Postres%20Individuales">
+                                        Postres Individuales
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Productos%20Sin%20Azúcar">
+                                        Productos Sin Azúcar
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Pastelería%20Tradicional">
+                                        Pastelería Tradicional
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Productos%20Sin%20Gluten">
+                                        Productos Sin Gluten
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Productos%20Vegana">
+                                        Productos Vegana
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Tortas%20Especiales">
+                                        Tortas Especiales
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="blogs.html">Blog</a>
+                        </li>
+
+                        <li>
+                            <a href="contacto.html">Contacto</a>
+                        </li>
+
+                        <li>
+                            <a href="nosotros.html">Nosotros</a>
+                        </li>
+
+                    </ul>
+                </nav>
+
+                <div class="header-acciones">
+
+                    <a href="IniciarSesion.html" class="enlace-usuario">
+                        Iniciar sesión
+                    </a>
+
+                    <a href="RegistroUsuario.html" class="enlace-registro">
+                        Registrarse
+                    </a>
+
+                    <a href="Carrito.html" class="enlace-carrito">
+
+                        <img src="../assets/img/carrito.png"
+                            alt="Carrito de compras"
+                            class="icono-carrito">
+
+                        <span>Carrito</span>
+
+                        <span id="contador-carrito">(0)</span>
+
+                    </a>
+
+                </div>
+
+            </div>
         </header>
 
     <main>
