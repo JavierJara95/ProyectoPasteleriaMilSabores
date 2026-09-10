@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +8,48 @@
     <title>Carrito de compras | Pastelería Mil Sabores</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
-<body>
-    <header class="site-header">
-        <a href="../index.html" class="logo">
-            <img src="../assets/img/logo-pasteleria.png" alt="Pastelería Mil Sabores">
-        </a>
 
-        <nav class="site-nav" aria-label="Navegación principal">
-            <a href="../index.html">Inicio</a>
-            <a href="Productos.html">Productos</a>
-            <a href="carrito.html">Carrito <span id="contador-carrito">(0)</span></a>
-            <a href="RegistroUsuario.html">Registrarse</a>
-            <a href="IniciarSesion.html">Iniciar sesión</a>
-            <a href="blogs.html">Blog</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="nosotros.html">Nosotros</a>
-            <span id="usuario-nav" aria-live="polite"></span>
-        </nav>
+<body>
+    <header class="header-principal">
+        <div class="header-contenido">
+            <a class="logo" href="../index.html">
+                <img alt="Pastelería Mil Sabores" src="../assets/img/logo-pasteleria.png" />
+            </a>
+            <nav aria-label="Navegación principal" class="navegacion-principal">
+                <ul class="menu-principal">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li class="menu-desplegable">
+                        <a href="Productos.html">Productos <span class="flecha-menu">▼</span></a>
+                        <ul class="submenu">
+                            <li><a href="Productos.html">Ver todos</a></li>
+                            <li><a href="Productos.html?categoria=Tortas%20Cuadradas">Tortas Cuadradas</a></li>
+                            <li><a href="Productos.html?categoria=Tortas%20Circulares">Tortas Circulares</a></li>
+                            <li><a href="Productos.html?categoria=Postres%20Individuales">Postres Individuales</a></li>
+                            <li><a href="Productos.html?categoria=Productos%20Sin%20Azúcar">Productos Sin Azúcar</a>
+                            </li>
+                            <li><a href="Productos.html?categoria=Pastelería%20Tradicional">Pastelería Tradicional</a>
+                            </li>
+                            <li><a href="Productos.html?categoria=Productos%20Sin%20Gluten">Productos Sin Gluten</a>
+                            </li>
+                            <li><a href="Productos.html?categoria=Productos%20Vegana">Productos Vegana</a></li>
+                            <li><a href="Productos.html?categoria=Tortas%20Especiales">Tortas Especiales</a></li>
+                        </ul>
+                    </li>
+                    <li><a aria-current="page" href="blogs.html">Blog</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </nav>
+            <div class="header-acciones">
+                <a class="enlace-usuario" href="IniciarSesion.html">Iniciar sesión</a>
+                <a class="enlace-registro" href="RegistroUsuario.html">Registrarse</a>
+                <a class="enlace-carrito" href="carrito.html">
+                    <img alt="Carrito de compras" class="icono-carrito" src="../assets/img/carrito.png" />
+                    <span>Carrito</span>
+                    <span id="contador-carrito">(0)</span>
+                </a>
+            </div>
+        </div>
     </header>
 
     <main>
@@ -44,8 +70,7 @@
                         <span id="cantidadTotalCarrito">0 productos</span>
                     </div>
 
-                    <div id="contenedorCarrito" class="carrito-lista"
-                         aria-label="Productos agregados al carrito">
+                    <div id="contenedorCarrito" class="carrito-lista" aria-label="Productos agregados al carrito">
                     </div>
 
                     <p id="mensajeCarrito" class="empty-message" aria-live="polite">
@@ -108,4 +133,5 @@
     <script src="../assets/js/carrito.js"></script>
     <script src="../assets/js/validaciones.js"></script>
 </body>
+
 </html>
