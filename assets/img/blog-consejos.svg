@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Cupcakes de repostería</title>
+  <desc id="desc">Ilustración de tres cupcakes con crema rosada sobre un fondo suave.</desc>
+  <rect width="800" height="500" fill="#FFF0F3"/>
+  <circle cx="120" cy="100" r="130" fill="#FFF5E1"/>
+  <ellipse cx="400" cy="420" rx="270" ry="34" fill="#E7CEC6" opacity=".75"/>
+  <g transform="translate(145 125)">
+    <path d="M45 190h150l-18 150H63z" fill="#8B4513"/>
+    <path d="M50 188c-28-46 14-78 47-63-8-42 54-64 72-25 44-12 71 39 40 72 24 20 9 48-15 48H65c-28 0-42-17-15-32z" fill="#FFC0CB"/>
+    <circle cx="124" cy="87" r="13" fill="#B84C4C"/>
+  </g>
+  <g transform="translate(330 85) scale(1.15)">
+    <path d="M45 190h150l-18 150H63z" fill="#8B4513"/>
+    <path d="M50 188c-28-46 14-78 47-63-8-42 54-64 72-25 44-12 71 39 40 72 24 20 9 48-15 48H65c-28 0-42-17-15-32z" fill="#FFF5E1"/>
+    <circle cx="124" cy="87" r="13" fill="#B84C4C"/>
+  </g>
+  <g transform="translate(535 135) scale(.9)">
+    <path d="M45 190h150l-18 150H63z" fill="#8B4513"/>
+    <path d="M50 188c-28-46 14-78 47-63-8-42 54-64 72-25 44-12 71 39 40 72 24 20 9 48-15 48H65c-28 0-42-17-15-32z" fill="#FFC0CB"/>
+    <circle cx="124" cy="87" r="13" fill="#B84C4C"/>
+  </g>
+</svg>
