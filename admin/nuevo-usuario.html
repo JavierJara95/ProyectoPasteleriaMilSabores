@@ -14,7 +14,7 @@
     <header class="header-principal">
         <div class="header-contenido">
             <a href="home.html" class="logo">
-                <img src="../assets/img/logo.png" alt="Logo Pastelería Mil Sabores">
+                <img src="../assets/img/logo-pasteleria.png" alt="Logo Pastelería Mil Sabores">
             </a>
 
             <!-- Navegación Administrador -->
@@ -69,6 +69,7 @@
                         type="text" 
                         id="run" 
                         name="run" 
+                        minlength="7"
                         maxlength="9" 
                         placeholder="Ej: 19012345K" 
                         required>
@@ -77,15 +78,22 @@
 
                 <!-- Nombre -->
                 <div class="form-group">
-                    <label for="nombre">Nombre Completo</label>
+                    <label for="nombre">Nombre</label>
                     <input 
                         type="text" 
                         id="nombre" 
                         name="nombre" 
                         maxlength="50" 
-                        placeholder="Ej: Juan Pérez" 
+                        placeholder="Ej: Juan" 
                         required>
                     <span class="form-error" id="error-nombre"></span>
+                </div>
+
+                <!-- Apellidos -->
+                <div class="form-group">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" id="apellidos" name="apellidos" maxlength="100" placeholder="Ej: Pérez González" required>
+                    <span class="form-error" id="error-apellidos"></span>
                 </div>
 
                 <!-- Correo Electrónico -->
@@ -121,8 +129,7 @@
                     <input 
                         type="date" 
                         id="fechaNacimiento" 
-                        name="fechaNacimiento" 
-                        required>
+                        name="fechaNacimiento" >
                     <span class="form-error" id="error-fechaNacimiento"></span>
                 </div>
 
@@ -163,7 +170,7 @@
                         type="text" 
                         id="direccion" 
                         name="direccion" 
-                        maxlength="100" 
+                        maxlength="300" 
                         placeholder="Ej: Av. Las Condes 1234, Depto 502" 
                         required>
                     <span class="form-error" id="error-direccion"></span>

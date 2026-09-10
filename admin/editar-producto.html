@@ -14,7 +14,7 @@
     <header class="header-principal">
         <div class="header-contenido">
             <a href="home.html" class="logo">
-                <img src="../assets/img/logo.png" alt="Logo Pastelería Mil Sabores">
+                <img src="../assets/img/logo-pasteleria.png" alt="Logo Pastelería Mil Sabores">
             </a>
 
             <!-- Navegación Administrador -->
@@ -60,7 +60,7 @@
                 <p>Ingresa los detalles técnicos, precio y stock para registrar un producto en el catálogo.</p>
             </div>
 
-            <form id="form-nuevo-producto" novalidate class="form-grid">
+            <form id="form-editar-producto" novalidate class="form-grid">
                 
                 <!-- Código del Producto -->
                 <div class="form-group">
@@ -70,7 +70,6 @@
                         id="codigo" 
                         name="codigo" 
                         minlength="3" 
-                        maxlength="15" 
                         placeholder="Ej: TOR-001" 
                         required>
                     <span class="form-error" id="error-codigo"></span>
@@ -83,7 +82,7 @@
                         type="text" 
                         id="nombre" 
                         name="nombre" 
-                        maxlength="80" 
+                        maxlength="100" 
                         placeholder="Ej: Torta Amor Hojajras" 
                         required>
                     <span class="form-error" id="error-nombre"></span>
@@ -96,10 +95,12 @@
                         <option value="">Selecciona una categoría</option>
                         <option value="Tortas Cuadradas">Tortas Cuadradas</option>
                         <option value="Tortas Circulares">Tortas Circulares</option>
-                        <option value="Sin Azúcar">Sin Azúcar</option>
-                        <option value="Tradicionales">Tradicionales</option>
-                        <option value="Productos Veganos">Productos Veganos</option>
-                        <option value="Especiales">Especiales</option>
+                        <option value="Postres Individuales">Postres Individuales</option>
+                        <option value="Productos Sin Azúcar">Productos Sin Azúcar</option>
+                        <option value="Pastelería Tradicional">Pastelería Tradicional</option>
+                        <option value="Productos Sin Gluten">Productos Sin Gluten</option>
+                        <option value="Productos Vegana">Productos Vegana</option>
+                        <option value="Tortas Especiales">Tortas Especiales</option>
                     </select>
                     <span class="form-error" id="error-categoria"></span>
                 </div>
@@ -111,7 +112,7 @@
                         type="number" 
                         id="precio" 
                         name="precio" 
-                        min="1" 
+                        min="0" step="any" 
                         placeholder="Ej: 25000" 
                         required>
                     <span class="form-error" id="error-precio"></span>
@@ -124,7 +125,7 @@
                         type="number" 
                         id="stock" 
                         name="stock" 
-                        min="0" 
+                        min="0" step="1" 
                         placeholder="Ej: 15" 
                         required>
                     <span class="form-error" id="error-stock"></span>
@@ -137,9 +138,8 @@
                         type="number" 
                         id="stockCritico" 
                         name="stockCritico" 
-                        min="1" 
-                        placeholder="Ej: 3" 
-                        required>
+                        min="0" step="1" 
+                        placeholder="Ej: 3">
                     <span class="form-error" id="error-stockCritico"></span>
                 </div>
 
@@ -150,8 +150,7 @@
                         type="text" 
                         id="imagen" 
                         name="imagen" 
-                        placeholder="Ej: torta-amor.jpg o https://..." 
-                        required>
+                        placeholder="Ej: torta-amor.jpg o https://...">
                     <span class="form-error" id="error-imagen"></span>
                 </div>
 
@@ -161,9 +160,8 @@
                     <textarea 
                         id="descripcion" 
                         name="descripcion" 
-                        maxlength="300" 
-                        placeholder="Describe los ingredientes principales o detalles de la receta..." 
-                        required></textarea>
+                        maxlength="500" 
+                        placeholder="Describe los ingredientes principales o detalles de la receta..."></textarea>
                     <span class="form-error" id="error-descripcion"></span>
                 </div>
 
@@ -174,7 +172,7 @@
 
                 <!-- Botones del Formulario -->
                 <div class="form-group form-group-full" style="display: flex; gap: 15px; margin-top: 10px;">
-                    <button type="submit" class="btn btn-primary" style="flex: 1;">Guardar Producto</button>
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Actualizar Producto</button>
                     <a href="productos.html" class="btn btn-light" style="flex: 1; text-decoration: none;">Cancelar</a>
                 </div>
 
