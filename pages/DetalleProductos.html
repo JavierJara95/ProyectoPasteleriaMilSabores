@@ -1,11 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Detalle del producto - Pastelería Mil Sabores">
+    <title>Detalle del producto | Pastelería Mil Sabores</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-    
+    <header class="site-header">
+        <a href="../index.html" class="logo">
+            <img src="../assets/img/logo-pasteleria.png" alt="Pastelería Mil Sabores">
+        </a>
+
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="../index.html">Inicio</a>
+            <a href="Productos.html">Productos</a>
+            <a href="carrito.html">Carrito <span id="contador-carrito">(0)</span></a>
+            <a href="RegistroUsuario.html">Registrarse</a>
+            <a href="IniciarSesion.html">Iniciar sesión</a>
+            <a href="blogs.html">Blog</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="nosotros.html">Nosotros</a>
+            <span id="usuario-nav" aria-live="polite"></span>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-shell detail-page">
+            <div class="section-heading">
+                <p class="eyebrow">detalle</p>
+                <h1>Conoce tu producto</h1>
+                <p>Revisa sus características y personaliza tu pedido.</p>
+            </div>
+
+            <article id="detalleProducto" class="detail-card">
+                <div class="detail-image-wrap">
+                    <img id="imagenProducto"
+                         src="../assets/img/logo-pasteleria.png"
+                         alt="Producto seleccionado">
+                </div>
+
+                <div class="detail-content">
+                    <p id="categoriaProducto" class="product-category">Categoría</p>
+                    <p id="codigoProducto" class="product-code">Código: —</p>
+                    <h2 id="nombreProducto">Detalle del producto</h2>
+                    <p id="descripcionProducto" class="detail-description">
+                        Selecciona un producto para conocer todos sus detalles.
+                    </p>
+                    <p id="precioProducto" class="detail-price">$0</p>
+
+                    <div class="detail-meta">
+                        <div class="form-group">
+                            <label for="tamanoProducto">Tamaño</label>
+                            <select id="tamanoProducto" name="tamanoProducto">
+                                <option value="">Selecciona un tamaño</option>
+                            </select>
+                            <small id="errorTamanoProducto" class="form-error" aria-live="polite"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cantidadProducto">Cantidad</label>
+                            <input type="number" id="cantidadProducto"
+                                   name="cantidadProducto"
+                                   value="1" min="1" max="5">
+                            <small id="errorCantidadProducto" class="form-error" aria-live="polite"></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensajePersonalizado">Mensaje para personalizar</label>
+                        <textarea id="mensajePersonalizado"
+                                  name="mensajePersonalizado"
+                                  placeholder="Escribe un mensaje especial para tu producto"
+                                  maxlength="500" rows="4"></textarea>
+                        <small id="errorMensajePersonalizado" class="form-error" aria-live="polite"></small>
+                    </div>
+
+                    <div class="detail-actions">
+                        <button type="button" id="btnAgregarCarrito" class="btn btn-primary">
+                            Añadir al carrito
+                        </button>
+                        <a href="Productos.html" class="btn btn-light">Volver a productos</a>
+                    </div>
+
+                    <p id="mensajeDetalle" class="form-message" aria-live="polite"></p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-contenido">
+            <div>
+                <h2>Pastelería Mil Sabores</h2>
+                <p>Tradición, repostería y momentos para celebrar.</p>
+            </div>
+
+            <div>
+                <h2>Enlaces</h2>
+                <a href="../index.html">Inicio</a>
+                <a href="Productos.html">Productos</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+        </div>
+
+        <p class="footer-copy">
+            &copy; 2026 Pastelería Mil Sabores. Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/carrito.js"></script>
+    <script src="../assets/js/validaciones.js"></script>
 </body>
 </html>

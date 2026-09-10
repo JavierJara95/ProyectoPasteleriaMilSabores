@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Carrito de compras - Pastelería Mil Sabores">
+    <title>Carrito de compras | Pastelería Mil Sabores</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <a href="../index.html" class="logo">
+            <img src="../assets/img/logo-pasteleria.png" alt="Pastelería Mil Sabores">
+        </a>
+
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="../index.html">Inicio</a>
+            <a href="Productos.html">Productos</a>
+            <a href="carrito.html">Carrito <span id="contador-carrito">(0)</span></a>
+            <a href="RegistroUsuario.html">Registrarse</a>
+            <a href="IniciarSesion.html">Iniciar sesión</a>
+            <a href="blogs.html">Blog</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="nosotros.html">Nosotros</a>
+            <span id="usuario-nav" aria-live="polite"></span>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-shell cart-page">
+            <div class="section-heading section-heading-row">
+                <div>
+                    <p class="eyebrow">compra</p>
+                    <h1>Mi carrito</h1>
+                    <p>Revisa, modifica o elimina los productos de tu compra.</p>
+                </div>
+                <a href="Productos.html" class="btn btn-secondary">Seguir comprando</a>
+            </div>
+
+            <section class="cart-layout">
+                <section class="cart-list-card">
+                    <div class="card-heading">
+                        <h2>Productos seleccionados</h2>
+                        <span id="cantidadTotalCarrito">0 productos</span>
+                    </div>
+
+                    <div id="contenedorCarrito" class="carrito-lista"
+                         aria-label="Productos agregados al carrito">
+                    </div>
+
+                    <p id="mensajeCarrito" class="empty-message" aria-live="polite">
+                        Tu carrito está vacío.
+                    </p>
+                </section>
+
+                <aside class="cart-summary">
+                    <h2>Resumen de compra</h2>
+
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        <strong id="subtotalCarrito">$0</strong>
+                    </div>
+
+                    <div class="summary-line">
+                        <span>Descuento</span>
+                        <strong id="descuentoCarrito">$0</strong>
+                    </div>
+
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <strong id="totalCarrito">$0</strong>
+                    </div>
+
+                    <p class="summary-note">
+                        Los descuentos se calculan según las reglas de negocio definidas para el caso.
+                    </p>
+
+                    <button type="button" id="btnContinuarCompra" class="btn btn-primary btn-full">
+                        Continuar compra
+                    </button>
+                </aside>
+            </section>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-contenido">
+            <div>
+                <h2>Pastelería Mil Sabores</h2>
+                <p>Tradición, repostería y momentos para celebrar.</p>
+            </div>
+
+            <div>
+                <h2>Enlaces</h2>
+                <a href="../index.html">Inicio</a>
+                <a href="Productos.html">Productos</a>
+                <a href="carrito.html">Carrito</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+        </div>
+
+        <p class="footer-copy">
+            &copy; 2026 Pastelería Mil Sabores. Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/carrito.js"></script>
+    <script src="../assets/js/validaciones.js"></script>
+</body>
+</html>

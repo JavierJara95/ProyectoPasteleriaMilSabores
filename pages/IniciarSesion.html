@@ -1,11 +1,198 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Iniciar sesión - Pastelería Mil Sabores">
+    <title>Iniciar sesión | Pastelería Mil Sabores</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-    
+        <header class="header-principal">
+            <div class="header-contenido">
+
+                <a href="../index.html" class="logo">
+                    <img src="../assets/img/logo-pasteleria.png"
+                        alt="Pastelería Mil Sabores">
+                </a>
+
+                <nav class="navegacion-principal" aria-label="Navegación principal">
+                    <ul class="menu-principal">
+
+                        <li>
+                            <a href="../index.html">Inicio</a>
+                        </li>
+
+                        <li class="menu-desplegable">
+                            <a href="Productos.html">
+                                Productos
+                                <span class="flecha-menu">▼</span>
+                            </a>
+
+                            <ul class="submenu">
+
+                                <li>
+                                    <a href="Productos.html">
+                                        Ver todos
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Tortas%20Cuadradas">
+                                        Tortas Cuadradas
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Tortas%20Circulares">
+                                        Tortas Circulares
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Postres%20Individuales">
+                                        Postres Individuales
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Productos%20Sin%20Azúcar">
+                                        Productos Sin Azúcar
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Pastelería%20Tradicional">
+                                        Pastelería Tradicional
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Productos%20Sin%20Gluten">
+                                        Productos Sin Gluten
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Productos%20Vegana">
+                                        Productos Vegana
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Productos.html?categoria=Tortas%20Especiales">
+                                        Tortas Especiales
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="blogs.html">Blog</a>
+                        </li>
+
+                        <li>
+                            <a href="contacto.html">Contacto</a>
+                        </li>
+
+                        <li>
+                            <a href="nosotros.html">Nosotros</a>
+                        </li>
+
+                    </ul>
+                </nav>
+
+                <div class="header-acciones">
+
+                    <a href="IniciarSesion.html" class="enlace-usuario">
+                        Iniciar sesión
+                    </a>
+
+                    <a href="RegistroUsuario.html" class="enlace-registro">
+                        Registrarse
+                    </a>
+
+                    <a href="Carrito.html" class="enlace-carrito">
+
+                        <img src="../assets/img/carrito.png"
+                            alt="Carrito de compras"
+                            class="icono-carrito">
+
+                        <span>Carrito</span>
+
+                        <span id="contador-carrito">(0)</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+        </header>
+
+    <main>
+
+        <section class="page-shell auth-page">
+            <div class="section-heading">
+                <p class="eyebrow">mi cuenta</p>
+                <h1>Iniciar sesión</h1>
+                <p>Ingresa a tu cuenta para continuar con tu compra.</p>
+            </div>
+
+            <article class="form-card">
+                <form id="formLogin" novalidate>
+                    <div class="form-group">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo"
+                               placeholder="ejemplo@gmail.com"
+                               autocomplete="email" maxlength="100" required>
+                        <small id="errorCorreo" class="form-error" aria-live="polite"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contrasena">Contraseña</label>
+                        <input type="password" id="contrasena" name="contrasena"
+                               placeholder="Ingresa tu contraseña"
+                               autocomplete="current-password"
+                               minlength="4" maxlength="100" required>
+                        <small id="errorContrasena" class="form-error" aria-live="polite"></small>
+                    </div>
+
+                    <p id="mensajeLogin" class="form-message" aria-live="polite"></p>
+
+                    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                </form>
+
+                <div class="form-footer-link">
+                    <p>¿No tienes una cuenta?</p>
+                    <a href="RegistroUsuario.html">Crear una cuenta</a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+        <footer class="site-footer">
+            <div class="footer-contenido">
+                <div>
+                    <h2>Pastelería Mil Sabores</h2>
+                    <p>Tradición, repostería y momentos para celebrar.</p>
+                </div>
+
+                <div>
+                    <h2>Enlaces</h2>
+                    <a href="../index.html">Inicio</a>
+                    <a href="Productos.html">Productos</a>
+                    <a href="Carrito.html">Carrito</a>
+                    <a href="contacto.html">Contacto</a>
+                </div>
+            </div>
+
+            <p class="footer-copy">
+                &copy; 2026 Pastelería Mil Sabores. Todos los derechos reservados.
+            </p>
+        </footer>
+
+    <script src="../assets/js/validaciones.js"></script>
+    <script src="../assets/js/carrito.js"></script>
 </body>
 </html>
