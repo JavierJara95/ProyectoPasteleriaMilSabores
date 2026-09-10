@@ -1,17 +1,44 @@
-const CLAVE_CARRITO = "carritoMilSabores";
+/* productos y carrito */
+
+const claveCarrito = "carritoMilSabores";
+
+
+/* obtener carrito desde localStorage */
 
 function obtenerCarrito() {
+    const carritoGuardado = localStorage.getItem(claveCarrito);
+
+    if (!carritoGuardado) {
+        return [];
+    }
+
     try {
-        return JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
+        return JSON.parse(carritoGuardado);
     } catch (error) {
         return [];
     }
 }
 
+
+/* guardar carrito en localStorage */
+
 function guardarCarrito(carrito) {
-    localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
-    actualizarContadorCarrito();
+    localStorage.setItem(claveCarrito, JSON.stringify(carrito));
 }
+
+
+/* formatear precios en pesos chilenos */
+
+function formatearPrecio(precio) {
+    return new Intl.NumberFormat("es-CL", {
+        style: "currency",
+        currency: "CLP",
+        maximumFractionDigits: 0
+    }).format(precio);
+}
+
+
+/* actualizar contador del carrito */
 
 function actualizarContadorCarrito() {
     const contador = document.getElementById("contador-carrito");
@@ -21,66 +48,62 @@ function actualizarContadorCarrito() {
     }
 
     const carrito = obtenerCarrito();
-    const cantidadTotal = carrito.reduce(
-        (suma, item) => suma + Number(item.cantidad || 0),
-        0
-    );
 
-    contador.textContent = `(${cantidadTotal})`;
+    const cantidadTotal = carrito.reduce(function (total, producto) {
+        return total + producto.cantidad;
+    }, 0);
+
+    contador.textContent = "(" + cantidadTotal + ")";
 }
 
-function agregarAlCarrito(codigoProducto, cantidad = 1, mensaje = "") {
-    const producto = productos.find(
-        item => item.codigo === codigoProducto
-    );
 
-    if (!producto) {
-        return {
-            correcto: false,
-            mensaje: "No encontramos el producto seleccionado."
-        };
-    }
+/* agregar producto al carrito */
 
-    cantidad = Number(cantidad);
-
-    if (!Number.isInteger(cantidad) || cantidad < 1) {
-        return {
-            correcto: false,
-            mensaje: "La cantidad debe ser un número válido mayor a cero."
-        };
-    }
-
+function agregarAlCarrito(producto, cantidad, tamano, mensaje) {
     const carrito = obtenerCarrito();
-    const itemExistente = carrito.find(
-        item => item.codigo === codigoProducto
-    );
 
-    if (itemExistente) {
-        if (itemExistente.cantidad + cantidad > 5) {
+    const cantidadSolicitada = Number(cantidad);
+
+    if (cantidadSolicitada < 1 || cantidadSolicitada > 5) {
+        return {
+            correcto: false,
+            mensaje: "La cantidad debe estar entre 1 y 5 unidades."
+        };
+    }
+
+    const productoExistente = carrito.find(function (item) {
+        return item.id === producto.id &&
+               item.tamano === tamano &&
+               item.mensaje === mensaje;
+    });
+
+    if (productoExistente) {
+        const nuevaCantidad =
+            productoExistente.cantidad + cantidadSolicitada;
+
+        if (nuevaCantidad > 5) {
             return {
                 correcto: false,
-                mensaje: "No puedes tener más de 5 unidades del mismo producto."
+                mensaje: "No puedes agregar más de 5 unidades del mismo producto."
             };
         }
 
-        itemExistente.cantidad += cantidad;
-
-        if (mensaje.trim() !== "") {
-            itemExistente.mensaje = mensaje.trim();
-        }
+        productoExistente.cantidad = nuevaCantidad;
     } else {
         carrito.push({
+            id: producto.id,
             codigo: producto.codigo,
-            categoria: producto.categoria,
             nombre: producto.nombre,
+            categoria: producto.categoria,
             precio: producto.precio,
-            imagen: producto.imagen,
-            cantidad: cantidad,
-            mensaje: mensaje.trim()
+            cantidad: cantidadSolicitada,
+            tamano: tamano,
+            mensaje: mensaje
         });
     }
 
     guardarCarrito(carrito);
+    actualizarContadorCarrito();
 
     return {
         correcto: true,
@@ -88,381 +111,527 @@ function agregarAlCarrito(codigoProducto, cantidad = 1, mensaje = "") {
     };
 }
 
-function eliminarDelCarrito(codigoProducto) {
-    const carrito = obtenerCarrito().filter(
-        item => item.codigo !== codigoProducto
-    );
 
-    guardarCarrito(carrito);
-    cargarCarrito();
-}
+/* cargar productos en la página de productos */
 
-function cambiarCantidadCarrito(codigoProducto, nuevaCantidad) {
-    nuevaCantidad = Number(nuevaCantidad);
+function cargarProductos() {
+    const contenedor = document.getElementById("contenedorProductos");
 
-    if (!Number.isInteger(nuevaCantidad) || nuevaCantidad < 1) {
-        cargarCarrito();
+    if (!contenedor) {
         return;
     }
 
-    if (nuevaCantidad > 5) {
-        cargarCarrito();
-        mostrarMensajeCarrito(
-            "La cantidad máxima por producto es de 5 unidades."
+    const buscador = document.getElementById("buscadorProducto");
+    const filtroCategoria = document.getElementById("filtroCategoria");
+    const filtroTipo = document.getElementById("filtroTipo");
+    const filtroTamano = document.getElementById("filtroTamano");
+    const contadorProductos = document.getElementById("contadorProductos");
+    const mensajeProductos = document.getElementById("mensajeProductos");
+
+    cargarFiltros();
+
+    function mostrarProductos() {
+        const textoBusqueda = buscador.value.trim().toLowerCase();
+        const categoriaSeleccionada = filtroCategoria.value;
+        const tipoSeleccionado = filtroTipo.value;
+        const tamanoSeleccionado = filtroTamano.value;
+
+        const productosFiltrados = productos.filter(function (producto) {
+            const coincideBusqueda =
+                producto.nombre.toLowerCase().includes(textoBusqueda) ||
+                producto.codigo.toLowerCase().includes(textoBusqueda);
+
+            const coincideCategoria =
+                categoriaSeleccionada === "" ||
+                producto.categoria === categoriaSeleccionada;
+
+            const coincideTipo =
+                tipoSeleccionado === "" ||
+                obtenerTipoProducto(producto) === tipoSeleccionado;
+
+            const coincideTamano =
+                tamanoSeleccionado === "" ||
+                obtenerTamanoProducto(producto) === tamanoSeleccionado;
+
+            return coincideBusqueda &&
+                   coincideCategoria &&
+                   coincideTipo &&
+                   coincideTamano;
+        });
+
+        contenedor.innerHTML = "";
+
+        contadorProductos.textContent =
+            productosFiltrados.length + " producto(s) disponible(s)";
+
+        if (productosFiltrados.length === 0) {
+            mensajeProductos.textContent =
+                "No encontramos productos que coincidan con tu búsqueda.";
+
+            return;
+        }
+
+        mensajeProductos.textContent = "";
+
+        productosFiltrados.forEach(function (producto) {
+            const tarjeta = document.createElement("article");
+
+            tarjeta.className = "producto-card";
+
+            tarjeta.innerHTML = `
+                <div class="producto-imagen">
+                    <img src="../assets/img/logo-pasteleria.png"
+                         alt="${producto.nombre}">
+                </div>
+
+                <div class="producto-info">
+                    <p class="producto-categoria">${producto.categoria}</p>
+
+                    <h2>${producto.nombre}</h2>
+
+                    <p class="producto-descripcion">
+                        ${producto.descripcion}
+                    </p>
+
+                    <p class="producto-precio">
+                        ${formatearPrecio(producto.precio)}
+                    </p>
+
+                    <div class="producto-acciones">
+                        <a href="DetalleProductos.html?id=${producto.id}"
+                           class="btn btn-light">
+                            Ver detalle
+                        </a>
+
+                        <button type="button"
+                                class="btn btn-primary btn-agregar-producto"
+                                data-id="${producto.id}">
+                            Añadir al carrito
+                        </button>
+                    </div>
+
+                    <p class="producto-mensaje"
+                       id="mensaje-producto-${producto.id}"
+                       aria-live="polite">
+                    </p>
+                </div>
+            `;
+
+            contenedor.appendChild(tarjeta);
+        });
+
+        agregarEventosBotones();
+    }
+
+
+    function cargarFiltros() {
+        if (filtroCategoria.options.length === 1) {
+            categoriasDisponibles.forEach(function (categoria) {
+                const opcion = document.createElement("option");
+
+                opcion.value = categoria;
+                opcion.textContent = categoria;
+
+                filtroCategoria.appendChild(opcion);
+            });
+        }
+
+        if (filtroTipo.options.length === 1) {
+            tiposTorta.forEach(function (tipo) {
+                const opcion = document.createElement("option");
+
+                opcion.value = tipo;
+                opcion.textContent = tipo;
+
+                filtroTipo.appendChild(opcion);
+            });
+        }
+
+        if (filtroTamano.options.length === 1) {
+            tamanosDisponibles.forEach(function (tamano) {
+                const opcion = document.createElement("option");
+
+                opcion.value = tamano;
+                opcion.textContent = tamano;
+
+                filtroTamano.appendChild(opcion);
+            });
+        }
+    }
+
+
+    function agregarEventosBotones() {
+        const botones =
+            document.querySelectorAll(".btn-agregar-producto");
+
+        botones.forEach(function (boton) {
+            boton.addEventListener("click", function () {
+                const idProducto = Number(boton.dataset.id);
+
+                const producto = productos.find(function (item) {
+                    return item.id === idProducto;
+                });
+
+                if (!producto) {
+                    return;
+                }
+
+                const resultado = agregarAlCarrito(
+                    producto,
+                    1,
+                    obtenerTamanoProducto(producto),
+                    ""
+                );
+
+                const mensaje =
+                    document.getElementById(
+                        "mensaje-producto-" + producto.id
+                    );
+
+                if (mensaje) {
+                    mensaje.textContent = resultado.mensaje;
+                }
+            });
+        });
+    }
+
+
+    buscador.addEventListener("input", mostrarProductos);
+    filtroCategoria.addEventListener("change", mostrarProductos);
+    filtroTipo.addEventListener("change", mostrarProductos);
+    filtroTamano.addEventListener("change", mostrarProductos);
+
+    mostrarProductos();
+}
+
+
+/* cargar detalle del producto */
+
+function cargarDetalleProducto() {
+    const contenedor = document.getElementById("detalleProducto");
+
+    if (!contenedor) {
+        return;
+    }
+
+    const parametros = new URLSearchParams(window.location.search);
+    const idProducto = Number(parametros.get("id"));
+
+    const producto = productos.find(function (item) {
+        return item.id === idProducto;
+    });
+
+    if (!producto) {
+        contenedor.innerHTML = `
+            <div class="mensaje-error">
+                No encontramos el producto solicitado.
+            </div>
+        `;
+
+        return;
+    }
+
+    const imagen = document.getElementById("imagenProducto");
+    const categoria = document.getElementById("categoriaProducto");
+    const codigo = document.getElementById("codigoProducto");
+    const nombre = document.getElementById("nombreProducto");
+    const descripcion = document.getElementById("descripcionProducto");
+    const precio = document.getElementById("precioProducto");
+    const tamano = document.getElementById("tamanoProducto");
+    const cantidad = document.getElementById("cantidadProducto");
+    const mensajePersonalizado =
+        document.getElementById("mensajePersonalizado");
+    const botonAgregar =
+        document.getElementById("btnAgregarCarrito");
+    const mensajeDetalle =
+        document.getElementById("mensajeDetalle");
+
+    imagen.src = "../assets/img/logo-pasteleria.png";
+    imagen.alt = producto.nombre;
+
+    categoria.textContent = producto.categoria;
+    codigo.textContent = "Código: " + producto.codigo;
+    nombre.textContent = producto.nombre;
+    descripcion.textContent = producto.descripcion;
+    precio.textContent = formatearPrecio(producto.precio);
+
+    cargarTamanos(tamano);
+
+    botonAgregar.addEventListener("click", function () {
+        const cantidadSeleccionada = Number(cantidad.value);
+        const tamanoSeleccionado = tamano.value;
+        const mensaje = mensajePersonalizado.value.trim();
+
+        const resultado = agregarAlCarrito(
+            producto,
+            cantidadSeleccionada,
+            tamanoSeleccionado,
+            mensaje
         );
+
+        mensajeDetalle.textContent = resultado.mensaje;
+
+        if (resultado.correcto) {
+            mensajeDetalle.className = "mensaje-exito";
+        } else {
+            mensajeDetalle.className = "mensaje-error";
+        }
+    });
+}
+
+
+/* cargar tamaños disponibles */
+
+function cargarTamanos(select) {
+    if (!select) {
         return;
     }
 
-    const carrito = obtenerCarrito();
-    const item = carrito.find(
-        producto => producto.codigo === codigoProducto
-    );
+    select.innerHTML = "";
 
-    if (!item) {
-        return;
-    }
+    tamanosDisponibles.forEach(function (tamano) {
+        const opcion = document.createElement("option");
 
-    item.cantidad = nuevaCantidad;
-    guardarCarrito(carrito);
-    cargarCarrito();
+        opcion.value = tamano;
+        opcion.textContent = tamano;
+
+        select.appendChild(opcion);
+    });
 }
 
-function obtenerDatosProducto(codigoProducto) {
-    return productos.find(
-        producto => producto.codigo === codigoProducto
-    );
-}
+
+/* cargar carrito */
 
 function cargarCarrito() {
     const contenedor = document.getElementById("contenedorCarrito");
 
     if (!contenedor) {
-        actualizarContadorCarrito();
         return;
     }
+
+    const mensajeCarrito = document.getElementById("mensajeCarrito");
+    const cantidadTotalCarrito =
+        document.getElementById("cantidadTotalCarrito");
+    const subtotalCarrito =
+        document.getElementById("subtotalCarrito");
+    const descuentoCarrito =
+        document.getElementById("descuentoCarrito");
+    const totalCarrito =
+        document.getElementById("totalCarrito");
+    const botonContinuar =
+        document.getElementById("btnContinuarCompra");
 
     let carrito = obtenerCarrito();
 
-    carrito = carrito.map(item => {
-        const producto = obtenerDatosProducto(item.codigo);
+    function mostrarCarrito() {
+        carrito = obtenerCarrito();
 
-        if (!producto) {
-            return item;
+        contenedor.innerHTML = "";
+
+        const cantidadTotal = carrito.reduce(function (total, producto) {
+            return total + producto.cantidad;
+        }, 0);
+
+        const subtotal = carrito.reduce(function (total, producto) {
+            return total + producto.precio * producto.cantidad;
+        }, 0);
+
+        const descuento = 0;
+        const total = subtotal - descuento;
+
+        cantidadTotalCarrito.textContent =
+            cantidadTotal + (cantidadTotal === 1 ? " producto" : " productos");
+
+        subtotalCarrito.textContent = formatearPrecio(subtotal);
+        descuentoCarrito.textContent = formatearPrecio(descuento);
+        totalCarrito.textContent = formatearPrecio(total);
+
+        if (carrito.length === 0) {
+            mensajeCarrito.textContent = "Tu carrito está vacío.";
+            return;
         }
 
-        return {
-            ...item,
-            categoria: producto.categoria,
-            nombre: producto.nombre,
-            precio: producto.precio,
-            imagen: producto.imagen
-        };
-    });
+        mensajeCarrito.textContent = "";
 
-    localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+        carrito.forEach(function (producto) {
+            const item = document.createElement("article");
 
-    contenedor.innerHTML = "";
+            item.className = "carrito-item";
 
-    const mensajeVacio = document.getElementById("mensajeCarrito");
-    const cantidadTotal = document.getElementById("cantidadTotalCarrito");
+            item.innerHTML = `
+                <div class="carrito-producto">
+                    <img src="../assets/img/logo-pasteleria.png"
+                         alt="${producto.nombre}">
 
-    if (carrito.length === 0) {
-        if (mensajeVacio) {
-            mensajeVacio.hidden = false;
-        }
+                    <div>
+                        <p class="producto-categoria">
+                            ${producto.categoria}
+                        </p>
 
-        if (cantidadTotal) {
-            cantidadTotal.textContent = "0 productos";
-        }
+                        <h3>${producto.nombre}</h3>
 
-        actualizarResumenCarrito(carrito);
-        actualizarContadorCarrito();
-        return;
+                        <p>Código: ${producto.codigo}</p>
+
+                        <p>
+                            Tamaño: ${producto.tamano}
+                        </p>
+
+                        ${
+                            producto.mensaje
+                                ? `<p>Mensaje: ${producto.mensaje}</p>`
+                                : ""
+                        }
+
+                        <p>
+                            Precio unitario:
+                            ${formatearPrecio(producto.precio)}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="carrito-controles">
+                    <label for="cantidad-${producto.id}">
+                        Cantidad
+                    </label>
+
+                    <input
+                        type="number"
+                        id="cantidad-${producto.id}"
+                        class="cantidad-carrito"
+                        data-id="${producto.id}"
+                        min="1"
+                        max="5"
+                        value="${producto.cantidad}"
+                    >
+
+                    <strong>
+                        ${formatearPrecio(
+                            producto.precio * producto.cantidad
+                        )}
+                    </strong>
+
+                    <button
+                        type="button"
+                        class="carrito-eliminar"
+                        data-id="${producto.id}">
+                        Eliminar
+                    </button>
+                </div>
+            `;
+
+            contenedor.appendChild(item);
+        });
+
+        agregarEventosCarrito();
     }
 
-    if (mensajeVacio) {
-        mensajeVacio.hidden = true;
-    }
 
-    let totalProductos = 0;
+    function agregarEventosCarrito() {
+        const controlesCantidad =
+            document.querySelectorAll(".cantidad-carrito");
 
-    carrito.forEach(item => {
-        const producto = obtenerDatosProducto(item.codigo);
-        const categoria = producto
-            ? producto.categoria
-            : item.categoria || "Producto";
-        const nombre = producto
-            ? producto.nombre
-            : item.nombre || "Producto";
-        const precio = producto
-            ? producto.precio
-            : Number(item.precio || 0);
-        const imagen = producto
-            ? producto.imagen
-            : item.imagen || "../assets/img/logo-pasteleria.png";
+        controlesCantidad.forEach(function (control) {
+            control.addEventListener("change", function () {
+                const idProducto = Number(control.dataset.id);
+                let nuevaCantidad = Number(control.value);
 
-        totalProductos += Number(item.cantidad || 0);
-
-        const elemento = document.createElement("article");
-        elemento.className = "carrito-item";
-
-        elemento.innerHTML = `
-            <img src="${imagen}" alt="${nombre}">
-            <div>
-                <p class="producto-categoria">${categoria}</p>
-                <h3>${nombre}</h3>
-                <p>Código: ${item.codigo}</p>
-                <p>$${precio.toLocaleString("es-CL")} CLP</p>
-                ${item.mensaje ? `<p>Mensaje: ${item.mensaje}</p>` : ""}
-            </div>
-            <div class="carrito-controles">
-                <button type="button" data-accion="disminuir" data-codigo="${item.codigo}">−</button>
-                <input type="number" min="1" max="5" value="${item.cantidad}" data-accion="cantidad" data-codigo="${item.codigo}" aria-label="Cantidad de ${nombre}">
-                <button type="button" data-accion="aumentar" data-codigo="${item.codigo}">+</button>
-                <button type="button" class="carrito-eliminar" data-accion="eliminar" data-codigo="${item.codigo}">Eliminar</button>
-            </div>
-        `;
-
-        contenedor.appendChild(elemento);
-    });
-
-    if (cantidadTotal) {
-        cantidadTotal.textContent =
-            `${totalProductos} ${totalProductos === 1 ? "producto" : "productos"}`;
-    }
-
-    contenedor.querySelectorAll("[data-accion]").forEach(control => {
-        control.addEventListener("click", function () {
-            const codigo = this.dataset.codigo;
-            const accion = this.dataset.accion;
-            const carritoActual = obtenerCarrito();
-            const item = carritoActual.find(
-                producto => producto.codigo === codigo
-            );
-
-            if (!item) {
-                return;
-            }
-
-            if (accion === "aumentar") {
-                cambiarCantidadCarrito(codigo, item.cantidad + 1);
-            }
-
-            if (accion === "disminuir") {
-                if (item.cantidad === 1) {
-                    eliminarDelCarrito(codigo);
-                } else {
-                    cambiarCantidadCarrito(codigo, item.cantidad - 1);
+                if (nuevaCantidad < 1) {
+                    nuevaCantidad = 1;
                 }
-            }
 
-            if (accion === "eliminar") {
-                eliminarDelCarrito(codigo);
-            }
+                if (nuevaCantidad > 5) {
+                    nuevaCantidad = 5;
+                }
+
+                control.value = nuevaCantidad;
+
+                const producto = carrito.find(function (item) {
+                    return item.id === idProducto;
+                });
+
+                if (!producto) {
+                    return;
+                }
+
+                producto.cantidad = nuevaCantidad;
+
+                guardarCarrito(carrito);
+                actualizarContadorCarrito();
+                mostrarCarrito();
+            });
         });
 
-        control.addEventListener("change", function () {
-            if (this.dataset.accion !== "cantidad") {
-                return;
-            }
 
-            cambiarCantidadCarrito(
-                this.dataset.codigo,
-                this.value
-            );
+        const botonesEliminar =
+            document.querySelectorAll(".carrito-eliminar");
+
+        botonesEliminar.forEach(function (boton) {
+            boton.addEventListener("click", function () {
+                const idProducto = Number(boton.dataset.id);
+
+                carrito = carrito.filter(function (producto) {
+                    return producto.id !== idProducto;
+                });
+
+                guardarCarrito(carrito);
+                actualizarContadorCarrito();
+                mostrarCarrito();
+            });
         });
-    });
-
-    actualizarResumenCarrito(carrito);
-    actualizarContadorCarrito();
-}
-
-function obtenerUsuarioActual() {
-    const correoActual = localStorage.getItem("usuario");
-
-    if (!correoActual) {
-        return null;
     }
 
-    const usuarios = JSON.parse(
-        localStorage.getItem("usuariosMilSabores")
-    ) || [];
 
-    return usuarios.find(
-        usuario => usuario.correo === correoActual
-    ) || null;
-}
-
-function calcularEdad(fechaNacimiento) {
-    if (!fechaNacimiento) {
-        return null;
-    }
-
-    const nacimiento = new Date(`${fechaNacimiento}T00:00:00`);
-    const hoy = new Date();
-
-    let edad = hoy.getFullYear() - nacimiento.getFullYear();
-    const diferenciaMes = hoy.getMonth() - nacimiento.getMonth();
-
-    if (
-        diferenciaMes < 0 ||
-        (diferenciaMes === 0 && hoy.getDate() < nacimiento.getDate())
-    ) {
-        edad--;
-    }
-
-    return edad;
-}
-
-function esCumpleanos(fechaNacimiento) {
-    if (!fechaNacimiento) {
-        return false;
-    }
-
-    const nacimiento = new Date(`${fechaNacimiento}T00:00:00`);
-    const hoy = new Date();
-
-    return (
-        nacimiento.getMonth() === hoy.getMonth() &&
-        nacimiento.getDate() === hoy.getDate()
-    );
-}
-
-function esCorreoDuoc(correo) {
-    if (!correo) {
-        return false;
-    }
-
-    const correoNormalizado = correo.toLowerCase().trim();
-
-    return (
-        correoNormalizado.endsWith("@duoc.cl") ||
-        correoNormalizado.endsWith("@profesor.duoc.cl")
-    );
-}
-
-function calcularDescuentoCarrito(carrito) {
-    const usuario = obtenerUsuarioActual();
-
-    if (!usuario || carrito.length === 0) {
-        return {
-            descuento: 0,
-            beneficios: []
-        };
-    }
-
-    const subtotal = carrito.reduce((suma, item) => {
-        const producto = obtenerDatosProducto(item.codigo);
-        const precio = producto
-            ? producto.precio
-            : Number(item.precio || 0);
-
-        return suma + precio * Number(item.cantidad || 0);
-    }, 0);
-
-    let descuento = 0;
-    const beneficios = [];
-
-    const edad = calcularEdad(usuario.fechaNacimiento);
-
-    if (edad !== null && edad > 50) {
-        descuento += subtotal * 0.50;
-        beneficios.push("50% por ser mayor de 50 años");
-    }
-
-    if (usuario.codigoPromocional === "FELICES50") {
-        descuento += subtotal * 0.10;
-        beneficios.push("10% por código FELICES50");
-    }
-
-    if (
-        esCorreoDuoc(usuario.correo) &&
-        esCumpleanos(usuario.fechaNacimiento)
-    ) {
-        const tortas = carrito.filter(item => {
-            const producto = obtenerDatosProducto(item.codigo);
-            return producto && producto.tipo === "Torta";
-        });
-
-        if (tortas.length > 0) {
-            const tortaGratis = tortas.reduce((menor, item) => {
-                const producto = obtenerDatosProducto(item.codigo);
-                const precioActual = producto
-                    ? producto.precio
-                    : Number(item.precio || 0);
-
-                const precioMenor = menor
-                    ? Number(menor.precio || 0)
-                    : Infinity;
-
-                return precioActual < precioMenor
-                    ? { ...item, precio: precioActual }
-                    : menor;
-            }, null);
-
-            if (tortaGratis) {
-                descuento += Number(tortaGratis.precio || 0);
-                beneficios.push("torta gratis por cumpleaños Duoc");
-            }
+    botonContinuar.addEventListener("click", function () {
+        if (carrito.length === 0) {
+            mensajeCarrito.textContent =
+                "Debes agregar al menos un producto antes de continuar.";
+            return;
         }
-    }
 
-    descuento = Math.min(descuento, subtotal);
-
-    return {
-        descuento,
-        beneficios
-    };
-}
-
-function actualizarResumenCarrito(carrito) {
-    const subtotalElemento = document.getElementById("subtotalCarrito");
-    const descuentoElemento = document.getElementById("descuentoCarrito");
-    const totalElemento = document.getElementById("totalCarrito");
-
-    let subtotal = 0;
-
-    carrito.forEach(item => {
-        const producto = obtenerDatosProducto(item.codigo);
-        const precio = producto
-            ? producto.precio
-            : Number(item.precio || 0);
-
-        subtotal += precio * Number(item.cantidad || 0);
+        mensajeCarrito.textContent =
+            "Tu carrito está listo para continuar con la compra.";
     });
 
-    const resultadoDescuento = calcularDescuentoCarrito(carrito);
-    const descuento = resultadoDescuento.descuento;
-    const total = Math.max(0, subtotal - descuento);
 
-    if (subtotalElemento) {
-        subtotalElemento.textContent =
-            `$${subtotal.toLocaleString("es-CL")} CLP`;
-    }
-
-    if (descuentoElemento) {
-        descuentoElemento.textContent =
-            `$${descuento.toLocaleString("es-CL")} CLP`;
-    }
-
-    if (totalElemento) {
-        totalElemento.textContent =
-            `$${total.toLocaleString("es-CL")} CLP`;
-    }
+    mostrarCarrito();
 }
 
-function mostrarMensajeCarrito(mensaje) {
-    const elemento = document.getElementById("mensajeCarrito");
 
-    if (!elemento) {
-        return;
+/* obtener tipo de producto */
+
+function obtenerTipoProducto(producto) {
+    if (producto.categoria === "Tortas Cuadradas") {
+        return "Cuadrada";
     }
 
-    elemento.hidden = false;
-    elemento.textContent = mensaje;
+    if (producto.categoria === "Tortas Circulares") {
+        return "Circular";
+    }
+
+    return "";
 }
+
+
+/* obtener tamaño inicial del producto */
+
+function obtenerTamanoProducto(producto) {
+    if (
+        producto.categoria === "Tortas Cuadradas" ||
+        producto.categoria === "Tortas Circulares" ||
+        producto.categoria === "Tortas Especiales"
+    ) {
+        return "Grande";
+    }
+
+    return "Pequeño";
+}
+
+
+/* iniciar funciones cuando carga la página */
 
 document.addEventListener("DOMContentLoaded", function () {
     actualizarContadorCarrito();
+    cargarProductos();
+    cargarDetalleProducto();
     cargarCarrito();
 });

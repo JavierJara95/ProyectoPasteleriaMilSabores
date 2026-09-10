@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Torta de celebración</title>
+  <desc id="desc">Ilustración de una torta rosada de tres capas sobre un fondo crema.</desc>
+  <rect width="800" height="500" fill="#FFF5E1"/>
+  <circle cx="670" cy="90" r="120" fill="#FFE4EA"/>
+  <ellipse cx="400" cy="420" rx="250" ry="35" fill="#E7CEC6" opacity=".7"/>
+  <rect x="245" y="255" width="310" height="130" rx="26" fill="#8B4513"/>
+  <rect x="275" y="180" width="250" height="110" rx="24" fill="#FFC0CB"/>
+  <rect x="320" y="120" width="160" height="85" rx="22" fill="#8B4513"/>
+  <path d="M285 205c32 28 58-18 90 8s58-18 90 8 58-18 60-6v48H275v-48c3-5 6-8 10-10z" fill="#FFF0F3"/>
+  <path d="M255 278c42 32 78-20 120 9s78-20 120 9 54-18 60-8v54H245v-54c3-5 6-8 10-10z" fill="#FFF0F3"/>
+  <circle cx="400" cy="95" r="18" fill="#B84C4C"/>
+  <path d="M400 78c-8-25 3-43 18-55" stroke="#5F8D6B" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <path d="M421 35c18-8 32-5 43 8-19 11-34 11-43-8z" fill="#5F8D6B"/>
+</svg>

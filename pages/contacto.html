@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Formulario de contacto de Pastelería Mil Sabores." name="description"/>
+<title>Contacto | Pastelería Mil Sabores</title>
+<link href="../assets/css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="header-principal">
+<div class="header-contenido">
+<a class="logo" href="../index.html">
+<img alt="Pastelería Mil Sabores" src="../assets/img/logo-pasteleria.png"/>
+</a>
+<nav aria-label="Navegación principal" class="navegacion-principal">
+<ul class="menu-principal">
+<li><a href="../index.html">Inicio</a></li>
+<li class="menu-desplegable">
+<a href="Productos.html">Productos <span class="flecha-menu">▼</span></a>
+<ul class="submenu">
+<li><a href="Productos.html">Ver todos</a></li>
+<li><a href="Productos.html?categoria=Tortas%20Cuadradas">Tortas Cuadradas</a></li>
+<li><a href="Productos.html?categoria=Tortas%20Circulares">Tortas Circulares</a></li>
+<li><a href="Productos.html?categoria=Postres%20Individuales">Postres Individuales</a></li>
+<li><a href="Productos.html?categoria=Productos%20Sin%20Azúcar">Productos Sin Azúcar</a></li>
+<li><a href="Productos.html?categoria=Pastelería%20Tradicional">Pastelería Tradicional</a></li>
+<li><a href="Productos.html?categoria=Productos%20Sin%20Gluten">Productos Sin Gluten</a></li>
+<li><a href="Productos.html?categoria=Productos%20Vegana">Productos Vegana</a></li>
+<li><a href="Productos.html?categoria=Tortas%20Especiales">Tortas Especiales</a></li>
+</ul>
+</li>
+<li><a href="blogs.html">Blog</a></li>
+<li><a aria-current="page" href="contacto.html">Contacto</a></li>
+<li><a href="nosotros.html">Nosotros</a></li>
+</ul>
+</nav>
+<div class="header-acciones">
+<a class="enlace-usuario" href="IniciarSesion.html">Iniciar sesión</a>
+<a class="enlace-registro" href="RegistroUsuario.html">Registrarse</a>
+<a class="enlace-carrito" href="carrito.html">
+<img alt="Carrito de compras" class="icono-carrito" src="../assets/img/carrito.png"/>
+<span>Carrito</span>
+<span id="contador-carrito">(0)</span>
+</a>
+</div>
+</div>
+</header>
+<main>
+<section class="contacto-hero">
+<div class="page-shell contacto-hero-contenido">
+<div class="contacto-hero-texto">
+<p class="eyebrow">conversemos</p>
+<h1>¿Tienes algo que contarnos?</h1>
+<p>
+                        Envíanos tu mensaje a través de nuestro formulario. Queremos que cada contacto
+                        con Mil Sabores sea tan cercano y agradable como compartir un buen postre.
+                    </p>
+</div>
+<div aria-hidden="true" class="contacto-hero-marca">
+<img alt="" src="../assets/img/logo-pasteleria.png"/>
+</div>
+</div>
+</section>
+<section class="page-shell contacto-seccion">
+<div class="contacto-grid">
+<div class="contacto-formulario-card">
+<div class="section-heading contacto-heading">
+<p class="eyebrow">formulario de contacto</p>
+<h2 class="home-section-title">Escríbenos</h2>
+<p>Completa los campos y revisa los mensajes de ayuda antes de enviar.</p>
+</div>
+<form class="contacto-formulario" id="form-contacto" novalidate="">
+<div class="contacto-campo">
+<label for="contacto-nombre">Nombre <span aria-hidden="true">*</span></label>
+<input aria-describedby="ayuda-nombre error-nombre" aria-required="true" autocomplete="name" id="contacto-nombre" maxlength="100" name="nombre" required="" type="text"/>
+<small class="campo-ayuda" id="ayuda-nombre">Obligatorio. Máximo 100 caracteres.</small>
+<small aria-live="polite" class="campo-error" id="error-nombre"></small>
+</div>
+<div class="contacto-campo">
+<label for="contacto-correo">Correo</label>
+<input aria-describedby="ayuda-correo error-correo" autocomplete="email" id="contacto-correo" maxlength="100" name="correo" type="email"/>
+<small class="campo-ayuda" id="ayuda-correo">Opcional. Se aceptan @duoc.cl, @profesor.duoc.cl y @gmail.com.</small>
+<small aria-live="polite" class="campo-error" id="error-correo"></small>
+</div>
+<div class="contacto-campo">
+<div class="contacto-label-fila">
+<label for="contacto-comentario">Comentario <span aria-hidden="true">*</span></label>
+<span id="contador-comentario">0 / 500</span>
+</div>
+<textarea aria-describedby="ayuda-comentario error-comentario" aria-required="true" id="contacto-comentario" maxlength="500" name="comentario" required="" rows="7"></textarea>
+<small class="campo-ayuda" id="ayuda-comentario">Obligatorio. Máximo 500 caracteres.</small>
+<small aria-live="polite" class="campo-error" id="error-comentario"></small>
+</div>
+<button class="btn btn-primary contacto-boton" type="submit">Enviar mensaje</button>
+<div aria-live="polite" class="contacto-mensaje" id="mensaje-contacto" role="status"></div>
+</form>
+</div>
+<aside aria-label="Información sobre el formulario" class="contacto-info">
+<div class="contacto-info-card contacto-info-destacada">
+<span aria-hidden="true" class="contacto-info-icono">💌</span>
+<h2>Tu mensaje importa</h2>
+<p>
+                            Esta vista permite enviar un mensaje de forma interna. En esta etapa del proyecto
+                            simulamos el envío desde el Front-End y validamos los datos con JavaScript.
+                        </p>
+</div>
+<div class="contacto-info-card">
+<span aria-hidden="true" class="contacto-info-icono">🧁</span>
+<h2>Conoce Mil Sabores</h2>
+<p>Descubre nuestra historia, misión, visión y compromiso con la comunidad.</p>
+<a href="nosotros.html">Ir a Nosotros →</a>
+</div>
+<div class="contacto-info-card">
+<span aria-hidden="true" class="contacto-info-icono">📖</span>
+<h2>Historias para saborear</h2>
+<p>Visita nuestro blog y conoce los artículos preparados para esta primera versión.</p>
+<a href="blogs.html">Ir al Blog →</a>
+</div>
+</aside>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="footer-contenido">
+<div>
+<h2>Pastelería Mil Sabores</h2>
+<p>Tradición, repostería y momentos para celebrar.</p>
+</div>
+<div>
+<h2>Enlaces</h2>
+<a href="../index.html">Inicio</a>
+<a href="Productos.html">Productos</a>
+<a href="carrito.html">Carrito</a>
+<a href="contacto.html">Contacto</a>
+</div>
+</div>
+<p class="footer-copy">© 2026 Pastelería Mil Sabores. Todos los derechos reservados.</p>
+</footer>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/carrito.js"></script>
+<script src="../assets/js/validaciones.js"></script>
+</body>
+</html>
