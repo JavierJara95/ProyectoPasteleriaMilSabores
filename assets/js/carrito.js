@@ -96,6 +96,7 @@ function agregarAlCarrito(producto, cantidad, tamano, mensaje) {
             nombre: producto.nombre,
             categoria: producto.categoria,
             precio: producto.precio,
+            imagen: producto.imagen || "",
             cantidad: cantidadSolicitada,
             tamano: tamano,
             mensaje: mensaje
@@ -180,7 +181,7 @@ function cargarProductos() {
 
             tarjeta.innerHTML = `
                 <div class="producto-imagen">
-                    <img src="../assets/img/logo-pasteleria.png"
+                    <img src="${producto.imagen || '../assets/img/logo-pasteleria.png'}"
                          alt="${producto.nombre}">
                 </div>
 
@@ -346,7 +347,7 @@ function cargarDetalleProducto() {
     const mensajeDetalle =
         document.getElementById("mensajeDetalle");
 
-    imagen.src = "../assets/img/logo-pasteleria.png";
+    imagen.src = producto.imagen || "../assets/img/logo-pasteleria.png";
     imagen.alt = producto.nombre;
 
     categoria.textContent = producto.categoria;
@@ -460,7 +461,7 @@ function cargarCarrito() {
 
             item.innerHTML = `
                 <div class="carrito-producto">
-                    <img src="../assets/img/logo-pasteleria.png"
+                    <img src="${producto.imagen || '../assets/img/logo-pasteleria.png'}"
                          alt="${producto.nombre}">
 
                     <div>
