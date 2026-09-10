@@ -1,11 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Pastelería Mil Sabores - tradición, repostería y momentos para celebrar." name="description"/>
+<title>Inicio | Pastelería Mil Sabores</title>
+<link href="assets/css/styles.css" rel="stylesheet"/>
 </head>
 <body>
-    
+<header class="header-principal">
+<div class="header-contenido">
+<a class="logo" href="index.html">
+<img alt="Pastelería Mil Sabores" src="assets/img/logo-pasteleria.png"/>
+</a>
+<nav aria-label="Navegación principal" class="navegacion-principal">
+<ul class="menu-principal">
+<li><a aria-current="page" href="index.html">Inicio</a></li>
+<li class="menu-desplegable">
+<a href="pages/Productos.html">
+                            Productos
+                            <span class="flecha-menu">▼</span>
+</a>
+<ul class="submenu">
+<li><a href="pages/Productos.html">Ver todos</a></li>
+<li><a href="pages/Productos.html?categoria=Tortas%20Cuadradas">Tortas Cuadradas</a></li>
+<li><a href="pages/Productos.html?categoria=Tortas%20Circulares">Tortas Circulares</a></li>
+<li><a href="pages/Productos.html?categoria=Postres%20Individuales">Postres Individuales</a></li>
+<li><a href="pages/Productos.html?categoria=Productos%20Sin%20Azúcar">Productos Sin Azúcar</a></li>
+<li><a href="pages/Productos.html?categoria=Pastelería%20Tradicional">Pastelería Tradicional</a></li>
+<li><a href="pages/Productos.html?categoria=Productos%20Sin%20Gluten">Productos Sin Gluten</a></li>
+<li><a href="pages/Productos.html?categoria=Productos%20Vegana">Productos Vegana</a></li>
+<li><a href="pages/Productos.html?categoria=Tortas%20Especiales">Tortas Especiales</a></li>
+</ul>
+</li>
+<li><a href="pages/blogs.html">Blog</a></li>
+<li><a href="pages/contacto.html">Contacto</a></li>
+<li><a href="pages/nosotros.html">Nosotros</a></li>
+</ul>
+</nav>
+<div class="header-acciones">
+<a class="enlace-usuario" href="pages/IniciarSesion.html">Iniciar sesión</a>
+<a class="enlace-registro" href="pages/RegistroUsuario.html">Registrarse</a>
+<a class="enlace-carrito" href="pages/carrito.html">
+<img alt="Carrito de compras" class="icono-carrito" src="assets/img/carrito.png"/>
+<span>Carrito</span>
+<span id="contador-carrito">(0)</span>
+</a>
+</div>
+</div>
+</header>
+<main>
+<section class="home-hero">
+<div class="home-hero-contenido">
+<div class="home-hero-texto">
+<p class="eyebrow">50 años de tradición</p>
+<h1>La vida es más dulce con Mil Sabores</h1>
+<p>
+                        Celebramos nuestra historia con repostería hecha para compartir,
+                        sorprender y acompañar los momentos importantes de cada familia.
+                    </p>
+<div class="home-hero-acciones">
+<a class="btn btn-primary" href="pages/nosotros.html">Conoce nuestra historia</a>
+<a class="btn btn-light" href="pages/blogs.html">Visita nuestro blog</a>
+</div>
+</div>
+<div aria-label="Pastelería Mil Sabores" class="home-hero-marca">
+<div class="home-logo-card">
+<img alt="Logo Pastelería Mil Sabores" src="assets/img/logo-pasteleria.png"/>
+<p>Tradición, creatividad y dulzura para cada ocasión.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="page-shell home-presentacion">
+<div class="section-heading">
+<p class="eyebrow">bienvenidos</p>
+<h2 class="home-section-title">Una pastelería con historia</h2>
+<p>
+                    Pastelería Mil Sabores celebra 50 años como referente de la repostería chilena.
+                    Nuestro propósito es entregar una experiencia dulce y memorable, manteniendo
+                    vivas nuestras raíces y apoyando a nuevas generaciones de talentos gastronómicos.
+                </p>
+</div>
+<div class="home-valores-grid">
+<article class="home-info-card">
+<span class="home-card-numero">01</span>
+<h3>Tradición</h3>
+<p>Recetas y sabores que conectan nuestra historia con las celebraciones de hoy.</p>
+</article>
+<article class="home-info-card">
+<span class="home-card-numero">02</span>
+<h3>Calidad</h3>
+<p>Productos de repostería preparados con dedicación para distintas ocasiones.</p>
+</article>
+<article class="home-info-card">
+<span class="home-card-numero">03</span>
+<h3>Comunidad</h3>
+<p>Una marca que busca aportar a la formación de nuevos talentos en gastronomía.</p>
+</article>
+</div>
+</section>
+<section class="home-destacados">
+<div class="page-shell home-destacados-contenido">
+<div class="section-heading section-heading-row">
+<div>
+<p class="eyebrow">historias y consejos</p>
+<h2 class="home-section-title">Desde nuestro blog</h2>
+<p>Conoce recetas, curiosidades y consejos relacionados con el mundo de la repostería.</p>
+</div>
+<a class="btn btn-light" href="pages/blogs.html">Ver todos los artículos</a>
+</div>
+<div class="home-blog-grid">
+<article class="home-blog-card">
+<div class="home-blog-ilustracion">🍰</div>
+<div>
+<p class="producto-categoria">Tradición</p>
+<h3>La historia detrás de nuestros sabores</h3>
+<p>Descubre cómo la tradición de Mil Sabores ha acompañado momentos especiales durante décadas.</p>
+<a href="pages/detalle-blog-1.html">Leer artículo →</a>
+</div>
+</article>
+<article class="home-blog-card">
+<div class="home-blog-ilustracion">🧁</div>
+<div>
+<p class="producto-categoria">Consejos</p>
+<h3>Ideas para disfrutar la repostería en casa</h3>
+<p>Consejos simples para convertir una tarde cualquiera en un momento mucho más dulce.</p>
+<a href="pages/detalle-blog-2.html">Leer artículo →</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="page-shell home-cta">
+<div>
+<p class="eyebrow">queremos escucharte</p>
+<h2 class="home-section-title">¿Tienes una consulta?</h2>
+<p>Escríbenos y cuéntanos cómo podemos ayudarte.</p>
+</div>
+<a class="btn btn-secondary" href="pages/contacto.html">Ir a contacto</a>
+</section>
+</main>
+<footer class="site-footer">
+<div class="footer-contenido">
+<div>
+<h2>Pastelería Mil Sabores</h2>
+<p>Tradición, repostería y momentos para celebrar.</p>
+</div>
+<div>
+<h2>Enlaces</h2>
+<a href="index.html">Inicio</a>
+<a href="pages/Productos.html">Productos</a>
+<a href="pages/carrito.html">Carrito</a>
+<a href="pages/contacto.html">Contacto</a>
+</div>
+</div>
+<p class="footer-copy">© 2026 Pastelería Mil Sabores. Todos los derechos reservados.</p>
+</footer>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/carrito.js"></script>
 </body>
 </html>
